@@ -1,7 +1,9 @@
 import React from 'react';
+import LogIn from './Components/Log-in';
+import './Styles-scss/App.scss';
 
 function App() {
-  return <div className="App">Burguer queen</div>;
+  return <LogIn />;
 }
 
 export default App;
