@@ -1,14 +1,81 @@
-.chalkboard{
-    width: 456px;
+@import '../Styles-scss/Variables.scss';
+
+.chalkboard {
+  display: flex;
+  flex-direction: row;
+
+  .burger-queen {
     display: flex;
-    flex-direction: row;
-    
-    .burger {
-      width: 456px;
-      height: 655px;
+    flex-direction: column;
+    margin-left: 115px;
+  }
+
+  .burger {
+    width: 456px;
+    height: 655px;
+    margin-top: -70px;
+    z-index: -1;
+  }
+  .crown {
+    width: 234px;
+    height: 166px;
+    margin-left: 40px;
+  }
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  h1 {
+    margin-top: 30px;
+    font-family: $title;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 80px;
+    color: $mayonese;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  }
+  h2 {
+    margin-top: 104px;
+    margin-bottom: 68px;
+    font-family: $sub-title;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 50px;
+    color: $mayonese;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    input {
+      width: 416px;
+      height: 68px;
+      margin-bottom: 80px;
+      // background: rgba(253, 253, 253, 0.794);
+      opacity: 0.5;
+      border-radius: 20px;
+      padding-left: 15px;
+      font-family: $body;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 44px;
+      line-height: 63px;
+      color: black;
     }
-    .crown {
-      width: 234px;
-      height: 166px;
+    button {
+      width: 210px;
+      height: 64px;
+      display: inline-block;
+      background: $chesse;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      font-family: $sub-title;
+      font-size: 40px;
+      line-height: 40px;
     }
+  }
 }
