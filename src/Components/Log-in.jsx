@@ -1,6 +1,7 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import getAuth from '../firebase-config';
 import burger from '../img/hamburger.png';
@@ -9,19 +10,20 @@ import '../Styles-scss/LogIn.scss';
 
 function LogIn() {
   const auth = getAuth;
+  const navigate = useNavigate();
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const login = async () => {
+  const login = async (loginEmail, loginPassword) => {
     try {
-      const usuario = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
-      console.log(usuario);
-    } catch (error) {
-      console.log(error.message);
+      await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      navigate('/orders');
+      console.log(loginEmail);
+    } catch {
+      setError('Verificar credenciales');
+      setLoginEmail('');
+      setLoginPassword('');
     }
   };
 
@@ -34,10 +36,12 @@ function LogIn() {
       <div className="form">
         <h1 className="title">BURGER QUEEN</h1>
         <h2 className="log.in">Iniciar sesión</h2>
+        <p>{error}</p>
         <form>
           <input
             className="e-mail"
             placeholder="Correo electrónico"
+            value={loginEmail}
             onChange={(event) => {
               setLoginEmail(event.target.value);
             }}
@@ -46,15 +50,19 @@ function LogIn() {
             className="password"
             type="password"
             placeholder="Contraseña"
+            value={loginPassword}
             onChange={(event) => {
               setLoginPassword(event.target.value);
             }}
           />
-          <Link to="/orders">
-            <button type="submit" onClick={login}>
-              Ingresar
-            </button>
-          </Link>
+          <button
+            type="button"
+            onClick={() => {
+              login(loginEmail, loginPassword);
+            }}
+          >
+            Ingresar
+          </button>
         </form>
       </div>
     </div>
