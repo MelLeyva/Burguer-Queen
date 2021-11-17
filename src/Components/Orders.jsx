@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
+/* eslint-disable no-console */
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import getAuth from '../firebase-config';
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase-config';
 import '../Styles-scss/Order.scss';
 
-function BreakFast() {
-  const auth = getAuth;
-  const [user, setUser] = useState({});
+function BreakFast(usuario) {
   const navigate = useNavigate();
-  // meter en un useEffect
-  onAuthStateChanged(auth, (currentUser) => {
-    // eslint-disable-next-line no-unused-expressions
-    currentUser ? setUser(currentUser) : setUser('');
-  });
+  console.log(usuario);
+
   const logout = async () => {
     await signOut(auth);
     navigate('/');
@@ -25,8 +21,6 @@ function BreakFast() {
       <button className="exit" type="button" onClick={logout}>
         Salir
       </button>
-      <h4> User Logged In: </h4>
-      {user?.email}
     </div>
   );
 }
