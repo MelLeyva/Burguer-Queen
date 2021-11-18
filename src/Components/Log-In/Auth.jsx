@@ -1,8 +1,8 @@
-/* eslint-disable no-console */
-import React, { useState } from 'react';
+/* eslint-disable react/jsx-fragments */
+import React, { useState, Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LogIn from './LogIn';
 import { signInWithEmailAndPassword, auth } from '../../firebase-config';
+import LogInForm from './LogInForm';
 
 function Auth() {
   const [error, setError] = useState('');
@@ -12,7 +12,7 @@ function Auth() {
     try {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       navigate('/orders');
-      console.log(loginEmail);
+      // console.log(loginEmail);
     } catch {
       setError('Verificar credenciales');
       // console.log(error);
@@ -20,10 +20,10 @@ function Auth() {
   };
 
   return (
-    <div>
-      <LogIn datos={logInAuth} />
-      <p>{error}</p>
-    </div>
+    <Fragment>
+      <p className="error">{error}</p>
+      <LogInForm datos={logInAuth} />
+    </Fragment>
   );
 }
 

@@ -1,19 +1,23 @@
 /* eslint-disable no-console */
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
-import { auth } from '../firebase-config';
+/* eslint-disable react/prop-types */
+import React /* { useState } */ from 'react';
+import logout from '../Lib/firebase';
 import '../Styles-scss/Order.scss';
 
-function BreakFast(usuario) {
+function BreakFast({ user }) {
+  console.log(user);
+  /*   const [user, setUser] = useState(null);
+  onAuthStateChanged(auth, (currentUser) => {
+    // eslint-disable-next-line no-unused-expressions
+    currentUser ? setUser(currentUser) : setUser(null);
+    console.log(user);
+  }); 
   const navigate = useNavigate();
-  console.log(usuario);
 
   const logout = async () => {
     await signOut(auth);
     navigate('/');
-  };
+  }; */
 
   return (
     <div className="breakfast">
