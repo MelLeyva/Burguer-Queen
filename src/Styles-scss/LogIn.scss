@@ -47,35 +47,47 @@
     line-height: 50px;
     color: $mayonese;
   }
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    input {
-      width: 416px;
-      height: 68px;
-      margin-bottom: 80px;
-      // background: rgba(253, 253, 253, 0.794);
-      opacity: 0.5;
-      border-radius: 20px;
-      padding-left: 15px;
-      font-family: $body;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 44px;
-      line-height: 63px;
-      color: black;
-    }
-    button {
-      width: 210px;
-      height: 64px;
-      display: inline-block;
-      background: $chesse;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 10px;
-      font-family: $sub-title;
-      font-size: 40px;
-      line-height: 40px;
-    }
+  p{
+    border-radius: 10px;
+    padding: 5px 10px;
+    // background-color: $tomato;
+    // background: rgba(248, 0, 0, 0.842);
+    font-family: $sub-title;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    //line-height: 200px;
+    color: rgb(255, 97, 97);
+  }
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  input {
+    width: 416px;
+    height: 68px;
+    margin-bottom: 50px;
+    // background: rgba(253, 253, 253, 0.794);
+    opacity: 0.5;
+    border-radius: 20px;
+    padding-left: 15px;
+    font-family: $body;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 44px;
+    line-height: 63px;
+    color: black;
+  }
+  button {
+    width: 210px;
+    height: 64px;
+    display: inline-block;
+    background: $chesse;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    font-family: $sub-title;
+    font-size: 40px;
+    line-height: 40px;
   }
 }
