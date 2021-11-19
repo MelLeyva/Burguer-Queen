@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -6,9 +5,9 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase-config';
 import LogInPage from './Components/Log-In/LogIn';
 import PrivateRoute from './Components/PrivateRoute';
-import BreakFast from './Components/Orders';
 import './Styles-scss/App.scss';
 import './Styles-scss/LogIn.scss';
+import Orders from './Components/Orders';
 
 // eslint-disable-next-line react/prop-types
 
@@ -28,8 +27,8 @@ function App() {
             exact
             path="/orders"
             element={
-              <PrivateRoute>
-                <BreakFast user={user} />
+              <PrivateRoute user={user}>
+                <Orders user={user} />
               </PrivateRoute>
             }
           />

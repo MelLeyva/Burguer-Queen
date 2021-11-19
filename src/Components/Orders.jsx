@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import React /* { useState } */ from 'react';
 import logout from '../Lib/firebase';
 import '../Styles-scss/Order.scss';
 
-function BreakFast({ user }) {
+function Orders({ user }) {
   console.log(user);
   /*   const [user, setUser] = useState(null);
   onAuthStateChanged(auth, (currentUser) => {
@@ -25,8 +25,13 @@ function BreakFast({ user }) {
       <button className="exit" type="button" onClick={logout}>
         Salir
       </button>
+      <p>{user}</p>
     </div>
   );
 }
 
-export default BreakFast;
+Orders.propTypes = {
+  user: PropTypes.string.isRequired
+};
+
+export default Orders;
