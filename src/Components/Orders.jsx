@@ -1,11 +1,12 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-console */
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import React /* { useState } */ from 'react';
 import logout from '../Lib/firebase';
 import '../Styles-scss/Order.scss';
 
-function Orders({ user }) {
-  console.log(user);
+function Orders(/* { user } */) {
+  /* console.log(user); */
   /*   const [user, setUser] = useState(null);
   onAuthStateChanged(auth, (currentUser) => {
     // eslint-disable-next-line no-unused-expressions
@@ -25,13 +26,13 @@ function Orders({ user }) {
       <button className="exit" type="button" onClick={logout}>
         Salir
       </button>
-      <p>{user}</p>
+      {/* <p>{user}</p> */}
     </div>
   );
 }
 
-Orders.propTypes = {
+/* Orders.propTypes = {
   user: PropTypes.string.isRequired
-};
+}; */
 
 export default Orders;

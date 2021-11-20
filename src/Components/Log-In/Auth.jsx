@@ -1,12 +1,26 @@
 /* eslint-disable react/jsx-fragments */
-import React, { useState, Fragment } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
 import { signInWithEmailAndPassword, auth } from '../../firebase-config';
 import LogInForm from './LogInForm';
 
 function Auth() {
+  // const [user, setUser] = useState(null);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        navigate('/orders');
+        const { uid } = currentUser;
+        console.log('entry', uid);
+      } else {
+        navigate('/');
+      }
+    });
+  }, [navigate]);
 
   const logInAuth = async (loginEmail, loginPassword) => {
     try {
