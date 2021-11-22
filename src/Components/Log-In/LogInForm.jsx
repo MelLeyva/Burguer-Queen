@@ -1,12 +1,19 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable no-console */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-const LogInForm = ({ datos }) => {
-  // const navigate = useNavigate();
+const LogInForm = ({ logInAuth }) => {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+
   return (
-    <form className="inputs">
+    <form
+      className="inputs"
+      onSubmit={(e) => {
+        e.preventDefault();
+        logInAuth(loginEmail, loginPassword);
+      }}
+    >
       <select>
         <option>Administrador</option>
         <option>Mesero</option>
@@ -15,7 +22,7 @@ const LogInForm = ({ datos }) => {
       <input
         className="e-mail"
         placeholder="Correo electrónico"
-        // value={loginEmail}
+        value={loginEmail}
         onChange={(event) => {
           setLoginEmail(event.target.value);
         }}
@@ -24,22 +31,18 @@ const LogInForm = ({ datos }) => {
         className="password"
         type="password"
         placeholder="Contraseña"
-        // value={loginPassword}
+        value={loginPassword}
         onChange={(event) => {
           setLoginPassword(event.target.value);
         }}
       />
-      <button
-        type="button"
-        onClick={(e) => {
-          e.preventDefault();
-          datos(loginEmail, loginPassword);
-        }}
-      >
-        Ingresar
-      </button>
+      <button type="submit">Ingresar</button>
     </form>
   );
+};
+
+LogInForm.propTypes = {
+  logInAuth: PropTypes.func.isRequired
 };
 
 export default LogInForm;

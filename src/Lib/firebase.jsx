@@ -1,12 +1,28 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { signOut /* , onAuthStateChanged */ } from 'firebase/auth';
-import { auth } from '../firebase-config';
+/* eslint-disable no-console */
+import { signOut } from 'firebase/auth';
+import { auth, signInWithEmailAndPassword } from '../firebase-config';
 
-const logout = async () => {
-  // const navigate = useNavigate();
-  await signOut(auth);
-  <Navigate to="/" />;
+const logInAuth = async (loginEmail, loginPassword) => {
+  try {
+    const user = await signInWithEmailAndPassword(
+      auth,
+      loginEmail,
+      loginPassword
+    );
+    console.log(user);
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
-export default logout;
+const logOut = async () => {
+  try {
+    const outUser = await signOut(auth);
+    console.log(outUser);
+    console.log('ya salí');
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export { logOut, logInAuth };
