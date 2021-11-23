@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-fragments */
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';

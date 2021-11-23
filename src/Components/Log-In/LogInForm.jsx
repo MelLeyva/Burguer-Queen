@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+// import { errorMessage } from '../../Lib/firebase';
 
 const LogInForm = ({ logInAuth }) => {
   const [loginEmail, setLoginEmail] = useState('');
@@ -36,6 +38,7 @@ const LogInForm = ({ logInAuth }) => {
           setLoginPassword(event.target.value);
         }}
       />
+      {/* <p>{errorMessage === '' ? '' : { errorMessage }}</p> */}
       <button type="submit">Ingresar</button>
     </form>
   );
