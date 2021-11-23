@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // import { errorMessage } from '../../Lib/firebase';
 
-const LogInForm = ({ logInAuth }) => {
+const LogInForm = ({ logInAuth /* , errorMessage */ }) => {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
@@ -16,11 +16,6 @@ const LogInForm = ({ logInAuth }) => {
         logInAuth(loginEmail, loginPassword);
       }}
     >
-      <select>
-        <option>Administrador</option>
-        <option>Mesero</option>
-        <option>Cocina</option>
-      </select>
       <input
         className="e-mail"
         placeholder="Correo electrónico"

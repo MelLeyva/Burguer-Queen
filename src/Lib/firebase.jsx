@@ -14,6 +14,7 @@ const logInAuth = async (loginEmail, loginPassword) => {
     console.log(user);
   } catch {
     errorMessage = 'Verificar credenciales';
+    console.log(errorMessage);
   }
 };
 
@@ -27,4 +28,4 @@ const logOut = async () => {
   }
 };
 
-export { logOut, logInAuth, errorMessage };
+export { logOut, logInAuth /* , errorMessage */ };
