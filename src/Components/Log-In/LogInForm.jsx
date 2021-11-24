@@ -2,11 +2,12 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import { errorMessage } from '../../Lib/firebase';
+import { errorMessage } from '../../Lib/firebase';
 
 const LogInForm = ({ logInAuth /* , errorMessage */ }) => {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  // const [error, setError] = useState('null');
 
   return (
     <form
@@ -33,7 +34,7 @@ const LogInForm = ({ logInAuth /* , errorMessage */ }) => {
           setLoginPassword(event.target.value);
         }}
       />
-      {/* <p>{errorMessage === '' ? '' : { errorMessage }}</p> */}
+      {errorMessage && errorMessage === '' ? <p /> : <p>{errorMessage}</p>}
       <button type="submit">Ingresar</button>
     </form>
   );

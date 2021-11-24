@@ -2,30 +2,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import '../../Styles-scss/Order.scss';
+import Breakfast from './Breakfast/Breakfast';
+import TakeOrderHeader from './TakeOrderHeader';
 
-function Orders({ user, logOut }) {
-  console.log(user);
+function Orders({ user }) {
+  // console.log(user.email);
   return (
-    <div className="breakfast">
-      <h1 className="title">Aqui van los desayunos </h1>
-      <button
-        className="exit"
-        type="button"
-        onClick={(e) => {
-          e.preventDefault();
-          logOut();
-          console.log('ya salí');
-        }}
-      >
-        Salir
-      </button>
-    </div>
+    <>
+      <TakeOrderHeader user={user} />
+      <Breakfast />
+    </>
   );
 }
 
 Orders.propTypes = {
-  user: PropTypes.string.isRequired,
-  logOut: PropTypes.func.isRequired
+  user: PropTypes.string.isRequired
+  /* logOut: PropTypes.func.isRequired */
 };
 
 export default Orders;
