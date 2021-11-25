@@ -2,19 +2,21 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { errorMessage } from '../../Lib/firebase';
+// import { errorMessage } from '../../Lib/firebase';
 
 const LogInForm = ({ logInAuth /* , errorMessage */ }) => {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
-  // const [error, setError] = useState('null');
+  const [error, setError] = useState('');
 
   return (
     <form
       className="inputs"
       onSubmit={(e) => {
         e.preventDefault();
-        logInAuth(loginEmail, loginPassword);
+        logInAuth(loginEmail, loginPassword)
+          .then(() => setError(''))
+          .cath(() => setError('Validar credenciales'));
       }}
     >
       <input
@@ -34,7 +36,7 @@ const LogInForm = ({ logInAuth /* , errorMessage */ }) => {
           setLoginPassword(event.target.value);
         }}
       />
-      {errorMessage && errorMessage === '' ? <p /> : <p>{errorMessage}</p>}
+      {error && error === '' ? <p /> : <p>{error}</p>}
       <button type="submit">Ingresar</button>
     </form>
   );

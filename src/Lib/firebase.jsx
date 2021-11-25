@@ -6,15 +6,12 @@ import { auth, signInWithEmailAndPassword } from '../firebase-config';
 let errorMessage = '';
 const logInAuth = async (loginEmail, loginPassword) => {
   try {
-    /* const user =  */ await signInWithEmailAndPassword(
-      auth,
-      loginEmail,
-      loginPassword
-    );
+    return await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     // console.log(user);
   } catch {
     errorMessage = 'Verificar credenciales';
     console.log(errorMessage);
+    return null;
   }
 };
 
