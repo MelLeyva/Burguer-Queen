@@ -8,17 +8,6 @@ Object {
       <form
         class="inputs"
       >
-        <select>
-          <option>
-            Administrador
-          </option>
-          <option>
-            Mesero
-          </option>
-          <option>
-            Cocina
-          </option>
-        </select>
         <input
           class="e-mail"
           placeholder="Correo electrónico"
@@ -30,6 +19,7 @@ Object {
           type="password"
           value=""
         />
+        <p />
         <button
           type="submit"
         >
@@ -42,17 +32,6 @@ Object {
     <form
       class="inputs"
     >
-      <select>
-        <option>
-          Administrador
-        </option>
-        <option>
-          Mesero
-        </option>
-        <option>
-          Cocina
-        </option>
-      </select>
       <input
         class="e-mail"
         placeholder="Correo electrónico"
@@ -64,6 +43,7 @@ Object {
         type="password"
         value=""
       />
+      <p />
       <button
         type="submit"
       >

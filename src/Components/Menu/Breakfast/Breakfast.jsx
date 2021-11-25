@@ -1,13 +1,14 @@
 /* eslint-disable no-console */
-import React, { /* useState, */ useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import Item from './Item';
 
 function Breakfast() {
-  // const [products, setProducts] = useState();
+  const [products, setProducts] = useState();
   const getData = async () => {
     const url = `http://localhost:5000/desayunos`;
     const getFetchData = await fetch(url).then((resul) => resul.json());
-    console.log(getFetchData);
-    // setProducts(getFetchData);
+    // console.log(getFetchData);
+    setProducts(getFetchData);
   };
   useEffect(() => {
     getData();
@@ -16,11 +17,10 @@ function Breakfast() {
   return (
     <>
       <section className="breakfast-menu">
-        {/*         {products &&
+        {products &&
           products.map((product) => (
             <Item product={product} key={product.id} />
-          ))} */}
-        hola seré el menu
+          ))}
       </section>
     </>
   );

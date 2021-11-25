@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import '../../Styles-scss/Order.scss';
-import Breakfast from './Breakfast/Breakfast';
+// import Breakfast from './Breakfast/Breakfast';
 import TakeOrderHeader from './TakeOrderHeader';
 
 function Orders({ user }) {
@@ -10,14 +10,13 @@ function Orders({ user }) {
   return (
     <>
       <TakeOrderHeader user={user} />
-      <Breakfast />
+      {/* <Breakfast /> */}
     </>
   );
 }
 
 Orders.propTypes = {
   user: PropTypes.string.isRequired
-  /* logOut: PropTypes.func.isRequired */
 };
 
 export default Orders;

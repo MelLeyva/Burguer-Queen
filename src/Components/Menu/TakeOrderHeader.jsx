@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // import avatar from '../../img/avatar-white.png';
 import icon from '../../img/logOut.png';
 import { logOut } from '../../Lib/firebase';
+import Breakfast from './Breakfast/Breakfast';
 
 function TakeOrderHeader({ user }) {
+  const [buttonClicked, setButtonClicked] = useState(false);
+
+  const handleButtonClick = () => {
+    setButtonClicked(true);
+  };
   return (
     <>
       <header className="orders-header">
         <span className="menu-buttons">
-          <button type="button" className="breakfast">
+          <button
+            type="button"
+            className="breakfast"
+            onClick={() => {
+              handleButtonClick();
+            }}
+          >
             Desayuno
           </button>
           <button type="button" className="dinner">
@@ -21,9 +33,6 @@ function TakeOrderHeader({ user }) {
             Pedidos
           </button>
           <div className="waiter">
-            {/* <span>
-              <img className="icon" src={avatar} alt="avatar" />
-            </span> */}
             <p className="avatar">{user}</p>
           </div>
           <button
@@ -39,6 +48,7 @@ function TakeOrderHeader({ user }) {
           </button>
         </span>
       </header>
+      <div>{buttonClicked ? <Breakfast /> : false}</div>
     </>
   );
 }
