@@ -9,14 +9,23 @@ const LogInForm = ({ logInAuth /* , errorMessage */ }) => {
   const [loginPassword, setLoginPassword] = useState('');
   const [error, setError] = useState('');
 
+  const handleSubmit = (email, pass) => {
+    logInAuth(email, pass)
+      .then((userCredential) => {
+        const { user } = userCredential;
+        console.log(user);
+      })
+      .catch((errorF) => {
+        setError('Validar Credenciales', errorF);
+      });
+  };
+
   return (
     <form
       className="inputs"
       onSubmit={(e) => {
         e.preventDefault();
-        logInAuth(loginEmail, loginPassword)
-          .then(() => setError(''))
-          .cath(() => setError('Validar credenciales'));
+        handleSubmit(loginEmail, loginPassword);
       }}
     >
       <input

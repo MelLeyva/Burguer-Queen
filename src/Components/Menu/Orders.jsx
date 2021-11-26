@@ -10,7 +10,6 @@ function Orders({ user }) {
   return (
     <>
       <TakeOrderHeader user={user} />
-      {/* <Breakfast /> */}
     </>
   );
 }

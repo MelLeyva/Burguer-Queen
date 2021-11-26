@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React /* , { useState }  */ from 'react';
 import PropTypes from 'prop-types';
 // import avatar from '../../img/avatar-white.png';
 import icon from '../../img/logOut.png';
 import { logOut } from '../../Lib/firebase';
 import Breakfast from './Breakfast/Breakfast';
+import UseOrderHeader from '../../Hooks/UseOrderHeader';
+import Dinner from './Dinner/Dinner';
 
 function TakeOrderHeader({ user }) {
-  const [buttonClicked, setButtonClicked] = useState(false);
-
-  const handleButtonClick = () => {
-    setButtonClicked(true);
-  };
+  const { handleMenu, menu } = UseOrderHeader();
+  /* const { handleBreakfastBtnClick, breakfastBtnClicked } = UseOrderHeader();
+  const { handleDinnerBtnClick } = UseOrderHeader(); */
   return (
     <>
       <header className="orders-header">
@@ -19,12 +19,20 @@ function TakeOrderHeader({ user }) {
             type="button"
             className="breakfast"
             onClick={() => {
-              handleButtonClick();
+              handleMenu('breakfast');
+              // handleBreakfastBtnClick();
             }}
           >
             Desayuno
           </button>
-          <button type="button" className="dinner">
+          <button
+            type="button"
+            className="dinner"
+            onClick={() => {
+              handleMenu('dinner');
+              // handleDinnerBtnClick();
+            }}
+          >
             Resto del día
           </button>
         </span>
@@ -48,7 +56,8 @@ function TakeOrderHeader({ user }) {
           </button>
         </span>
       </header>
-      <div>{buttonClicked ? <Breakfast /> : false}</div>
+      <div>{menu && menu === 'breakfast' ? <Breakfast /> : <Dinner />}</div>
+      {/* <div>{breakfastBtnClicked ? <Breakfast /> : false}</div> */}
     </>
   );
 }
