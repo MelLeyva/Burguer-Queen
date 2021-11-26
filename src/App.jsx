@@ -6,6 +6,7 @@ import { auth } from './firebase-config';
 import Views from './Components/Views';
 import './Styles-scss/App.scss';
 import './Styles-scss/LogIn.scss';
+import './Styles-scss/Order.scss';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -15,11 +16,11 @@ function App() {
   });
 
   return (
-    <div className="App">
+    <>
       <Router>
         <Views user={user} />
       </Router>
-    </div>
+    </>
   );
 }
 

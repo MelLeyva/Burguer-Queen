@@ -4,23 +4,30 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // import { errorMessage } from '../../Lib/firebase';
 
-const LogInForm = ({ logInAuth }) => {
+const LogInForm = ({ logInAuth /* , errorMessage */ }) => {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = (email, pass) => {
+    logInAuth(email, pass)
+      .then((userCredential) => {
+        const { user } = userCredential;
+        console.log(user);
+      })
+      .catch((errorF) => {
+        setError('Validar Credenciales', errorF);
+      });
+  };
 
   return (
     <form
       className="inputs"
       onSubmit={(e) => {
         e.preventDefault();
-        logInAuth(loginEmail, loginPassword);
+        handleSubmit(loginEmail, loginPassword);
       }}
     >
-      <select>
-        <option>Administrador</option>
-        <option>Mesero</option>
-        <option>Cocina</option>
-      </select>
       <input
         className="e-mail"
         placeholder="Correo electrónico"
@@ -38,7 +45,7 @@ const LogInForm = ({ logInAuth }) => {
           setLoginPassword(event.target.value);
         }}
       />
-      {/* <p>{errorMessage === '' ? '' : { errorMessage }}</p> */}
+      {error && error === '' ? <p /> : <p>{error}</p>}
       <button type="submit">Ingresar</button>
     </form>
   );

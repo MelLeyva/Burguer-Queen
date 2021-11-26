@@ -6,7 +6,7 @@ import burger from '../../img/hamburger.png';
 import crown from '../../img/crown.png';
 import LogInForm from './LogInForm';
 
-const LogInPage = ({ logInAuth }) => (
+const LogInPage = ({ logInAuth /* , errorMessage */ }) => (
   <Fragment>
     <div className="chalkboard">
       <div className="burger-queen">
@@ -16,7 +16,7 @@ const LogInPage = ({ logInAuth }) => (
       <div className="form">
         <h1 className="title">BURGER QUEEN</h1>
         <h2 className="log.in">Iniciar sesión</h2>
-        <LogInForm logInAuth={logInAuth} />
+        <LogInForm logInAuth={logInAuth} /* errorMessage={errorMessage} */ />
       </div>
     </div>
   </Fragment>

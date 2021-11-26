@@ -3,17 +3,13 @@ import { signOut } from 'firebase/auth';
 import { auth, signInWithEmailAndPassword } from '../firebase-config';
 
 // eslint-disable-next-line import/no-mutable-exports
-let errorMessage = '';
+// let errorMessage = '';
 const logInAuth = async (loginEmail, loginPassword) => {
   try {
-    const user = await signInWithEmailAndPassword(
-      auth,
-      loginEmail,
-      loginPassword
-    );
-    console.log(user);
+    return await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+    // console.log(user);
   } catch {
-    errorMessage = 'Verificar credenciales';
+    return null;
   }
 };
 
@@ -27,4 +23,4 @@ const logOut = async () => {
   }
 };
 
-export { logOut, logInAuth, errorMessage };
+export { logOut, logInAuth /* , errorMessage */ };
