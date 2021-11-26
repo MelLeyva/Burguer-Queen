@@ -4,28 +4,28 @@ import React from 'react';
 
 function Item({ product }) {
   return (
-    <div>
+    <>
       {product && (
         <>
-          <div>
+          <div className="product">
             <img className="img-food" src={product.image} alt="product" />
             <section>
               <li>{product.name}</li>
               <li>${product.price}.00</li>
             </section>
-          </div>
-          <div className="btns-counter">
-            <button type="button" className="btn-rest">
-              -
-            </button>
-            <p className="counter">0</p>
-            <button type="button" className="btn-add">
-              +
-            </button>
+            <div className="btns-counter">
+              <button type="button" className="btn-rest">
+                -
+              </button>
+              <p className="counter">0</p>
+              <button type="button" className="btn-add">
+                +
+              </button>
+            </div>
           </div>
         </>
       )}
-    </div>
+    </>
   );
 }
 

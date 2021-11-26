@@ -1,6 +1,5 @@
-import React /* , { useState }  */ from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-// import avatar from '../../img/avatar-white.png';
 import icon from '../../img/logOut.png';
 import { logOut } from '../../Lib/firebase';
 import Breakfast from './Breakfast/Breakfast';
@@ -9,8 +8,6 @@ import Dinner from './Dinner/Dinner';
 
 function TakeOrderHeader({ user }) {
   const { handleMenu, menu } = UseOrderHeader();
-  /* const { handleBreakfastBtnClick, breakfastBtnClicked } = UseOrderHeader();
-  const { handleDinnerBtnClick } = UseOrderHeader(); */
   return (
     <>
       <header className="orders-header">
@@ -20,7 +17,6 @@ function TakeOrderHeader({ user }) {
             className="breakfast"
             onClick={() => {
               handleMenu('breakfast');
-              // handleBreakfastBtnClick();
             }}
           >
             Desayuno
@@ -30,7 +26,6 @@ function TakeOrderHeader({ user }) {
             className="dinner"
             onClick={() => {
               handleMenu('dinner');
-              // handleDinnerBtnClick();
             }}
           >
             Resto del día
@@ -57,14 +52,12 @@ function TakeOrderHeader({ user }) {
         </span>
       </header>
       <div>{menu && menu === 'breakfast' ? <Breakfast /> : <Dinner />}</div>
-      {/* <div>{breakfastBtnClicked ? <Breakfast /> : false}</div> */}
     </>
   );
 }
 
 TakeOrderHeader.propTypes = {
   user: PropTypes.string.isRequired
-  /* logOut: PropTypes.func.isRequired */
 };
 
 export default TakeOrderHeader;

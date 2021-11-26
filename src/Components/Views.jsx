@@ -9,23 +9,11 @@ const Views = ({ user }) => (
   <>
     {user ? (
       <Routes>
-        <Route
-          exact
-          path="/"
-          element={<Orders user={user} /* logOut={logOut} */ />}
-        />
+        <Route exact path="/" element={<Orders user={user} />} />
       </Routes>
     ) : (
       <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <LogInPage
-              logInAuth={logInAuth} /* errorMessage={errorMessage} */
-            />
-          }
-        />
+        <Route exact path="/" element={<LogInPage logInAuth={logInAuth} />} />
       </Routes>
     )}
   </>
