@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useState } from 'react';
 
 function UseOrderHeader() {
@@ -6,6 +7,7 @@ function UseOrderHeader() {
   const handleMenu = (typeMenu) => {
     setMenu(typeMenu);
   };
+  console.log(typeof menu);
 
   return {
     menu,

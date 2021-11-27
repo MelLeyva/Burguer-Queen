@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase-config';
@@ -10,17 +10,18 @@ import './Styles-scss/Order.scss';
 
 function App() {
   const [user, setUser] = useState(null);
-  onAuthStateChanged(auth, (currentUser) => {
+  const authState = onAuthStateChanged(auth, (currentUser) => {
     // eslint-disable-next-line no-unused-expressions
-    currentUser ? setUser(currentUser.email) : setUser(null);
+    currentUser ? setUser(currentUser.email) : setUser(false);
   });
+  useEffect(() => {
+    authState();
+  }, [authState]);
 
   return (
-    <>
-      <Router>
-        <Views user={user} />
-      </Router>
-    </>
+    <Router>
+      <Views user={user} />
+    </Router>
   );
 }
 

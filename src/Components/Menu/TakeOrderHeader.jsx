@@ -1,13 +1,18 @@
+/* eslint-disable no-console */
+/* eslint-disable react/no-unused-prop-types */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import icon from '../../img/logOut.png';
 import { logOut } from '../../Lib/firebase';
-import Breakfast from './Breakfast/Breakfast';
-import UseOrderHeader from '../../Hooks/UseOrderHeader';
-import Dinner from './Dinner/Dinner';
+// import Breakfast from './Breakfast/Breakfast';
+// import UseOrderHeader from '../../Hooks/UseOrderHeader';
+// import Dinner from './Dinner/Dinner';
 
-function TakeOrderHeader({ user }) {
-  const { handleMenu, menu } = UseOrderHeader();
+function TakeOrderHeader({ user, handleMenu, menu }) {
+  console.log(typeof handleMenu);
+  console.log(typeof menu);
+  // const { handleMenu, menu } = UseOrderHeader();
   return (
     <>
       <header className="orders-header">
@@ -51,13 +56,13 @@ function TakeOrderHeader({ user }) {
           </button>
         </span>
       </header>
-      <div>{menu && menu === 'breakfast' ? <Breakfast /> : <Dinner />}</div>
     </>
   );
 }
 
 TakeOrderHeader.propTypes = {
-  user: PropTypes.string.isRequired
+  user: PropTypes.string.isRequired,
+  menu: PropTypes.string.isRequired
 };
 
 export default TakeOrderHeader;
