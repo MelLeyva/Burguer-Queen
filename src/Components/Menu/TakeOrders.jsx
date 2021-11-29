@@ -5,7 +5,8 @@ import '../../Styles-scss/Order.scss';
 import UseOrderHeader from '../../Hooks/UseOrderHeader';
 import Breakfast from './Breakfast/Breakfast';
 import Dinner from './Dinner/Dinner';
-import TakeOrderHeader from './TakeOrderHeader';
+import TakeOrderHeader from './Header/TakeOrderHeader';
+import Check from './Check/Check';
 
 function TakeOrders({ user }) {
   const [dinnerMenu, setDinnerMenu] = useState();
@@ -43,6 +44,7 @@ function TakeOrders({ user }) {
           <Dinner dinnerMenu={dinnerMenu} />
         )}
       </div>
+      <Check />
     </>
   );
 }

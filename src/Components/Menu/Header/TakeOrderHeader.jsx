@@ -3,16 +3,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import icon from '../../img/logOut.png';
-import { logOut } from '../../Lib/firebase';
-// import Breakfast from './Breakfast/Breakfast';
-// import UseOrderHeader from '../../Hooks/UseOrderHeader';
-// import Dinner from './Dinner/Dinner';
+import icon from '../../../img/logOut.png';
+import { logOut } from '../../../Lib/firebase';
 
-function TakeOrderHeader({ user, handleMenu, menu }) {
-  console.log(typeof handleMenu);
-  console.log(typeof menu);
-  // const { handleMenu, menu } = UseOrderHeader();
+function TakeOrderHeader({ user, handleMenu }) {
+  // console.log(typeof handleMenu);
+  // console.log(typeof menu);
   return (
     <>
       <header className="orders-header">
