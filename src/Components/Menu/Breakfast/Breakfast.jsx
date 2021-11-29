@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 import React from 'react';
-import BreakfastItem from './BreakfastItem';
+import Item from '../Item';
 
 function Breakfast({ breakfastMenu }) {
   return (
@@ -9,7 +9,7 @@ function Breakfast({ breakfastMenu }) {
       <section className="breakfast-menu">
         {breakfastMenu &&
           breakfastMenu.map((product) => (
-            <BreakfastItem product={product} key={product.id} />
+            <Item product={product} key={product.id} />
           ))}
       </section>
     </>

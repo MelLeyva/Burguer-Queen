@@ -2,16 +2,16 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import '../../Styles-scss/Order.scss';
-import UseOrderHeader from '../../Hooks/UseOrderHeader';
 import Breakfast from './Breakfast/Breakfast';
 import Dinner from './Dinner/Dinner';
 import TakeOrderHeader from './Header/TakeOrderHeader';
 import Check from './Check/Check';
+import HeaderMenu from '../../Hooks/HeaderMenu';
 
 function TakeOrders({ user }) {
   const [dinnerMenu, setDinnerMenu] = useState();
   const [breakfastMenu, setBreakfastMenu] = useState();
-  const { handleMenu, menu } = UseOrderHeader();
+  const { setMenu, menu } = HeaderMenu();
 
   const getDataDinner = async () => {
     const url = `https://my-json-server.typicode.com/MelLeyva/Burguer-Queen/comidas`;
@@ -32,11 +32,12 @@ function TakeOrders({ user }) {
   useEffect(() => {
     getDataBreakfast();
   }, []);
+
   // console.log(user.email);
   // console.log(typeof handleMenu);
   return (
     <>
-      <TakeOrderHeader user={user} handleMenu={handleMenu} menu={menu} />
+      <TakeOrderHeader user={user} setMenu={setMenu} menu={menu} />
       <div>
         {menu && menu === 'breakfast' ? (
           <Breakfast breakfastMenu={breakfastMenu} />

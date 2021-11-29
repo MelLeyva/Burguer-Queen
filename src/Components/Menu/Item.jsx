@@ -2,7 +2,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-function DinnerItem({ product }) {
+function Item({ product }) {
   return (
     <>
       {product && (
@@ -32,4 +32,4 @@ function DinnerItem({ product }) {
 /* Item.propTypes = {
   product: PropTypes.arrayOf(PropTypes.object).isRequired
 }; */
-export default DinnerItem;
+export default Item;

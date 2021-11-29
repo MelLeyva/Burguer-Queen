@@ -6,9 +6,13 @@ import PropTypes from 'prop-types';
 import icon from '../../../img/logOut.png';
 import { logOut } from '../../../Lib/firebase';
 
-function TakeOrderHeader({ user, handleMenu }) {
-  // console.log(typeof handleMenu);
+function TakeOrderHeader({ user, setMenu }) {
+  // console.log(typeof setMenu);
   // console.log(typeof menu);
+  const handleMenu = (typeMenu) => {
+    setMenu(typeMenu);
+  };
+
   return (
     <>
       <header className="orders-header">
