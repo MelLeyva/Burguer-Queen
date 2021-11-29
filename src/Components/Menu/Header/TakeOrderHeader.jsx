@@ -1,16 +1,14 @@
-import React /* , { useState }  */ from 'react';
+/* eslint-disable no-console */
+/* eslint-disable react/no-unused-prop-types */
+/* eslint-disable react/prop-types */
+import React from 'react';
 import PropTypes from 'prop-types';
-// import avatar from '../../img/avatar-white.png';
-import icon from '../../img/logOut.png';
-import { logOut } from '../../Lib/firebase';
-import Breakfast from './Breakfast/Breakfast';
-import UseOrderHeader from '../../Hooks/UseOrderHeader';
-import Dinner from './Dinner/Dinner';
+import icon from '../../../img/logOut.png';
+import { logOut } from '../../../Lib/firebase';
 
-function TakeOrderHeader({ user }) {
-  const { handleMenu, menu } = UseOrderHeader();
-  /* const { handleBreakfastBtnClick, breakfastBtnClicked } = UseOrderHeader();
-  const { handleDinnerBtnClick } = UseOrderHeader(); */
+function TakeOrderHeader({ user, handleMenu }) {
+  // console.log(typeof handleMenu);
+  // console.log(typeof menu);
   return (
     <>
       <header className="orders-header">
@@ -20,7 +18,6 @@ function TakeOrderHeader({ user }) {
             className="breakfast"
             onClick={() => {
               handleMenu('breakfast');
-              // handleBreakfastBtnClick();
             }}
           >
             Desayuno
@@ -30,7 +27,6 @@ function TakeOrderHeader({ user }) {
             className="dinner"
             onClick={() => {
               handleMenu('dinner');
-              // handleDinnerBtnClick();
             }}
           >
             Resto del día
@@ -56,15 +52,13 @@ function TakeOrderHeader({ user }) {
           </button>
         </span>
       </header>
-      <div>{menu && menu === 'breakfast' ? <Breakfast /> : <Dinner />}</div>
-      {/* <div>{breakfastBtnClicked ? <Breakfast /> : false}</div> */}
     </>
   );
 }
 
 TakeOrderHeader.propTypes = {
-  user: PropTypes.string.isRequired
-  /* logOut: PropTypes.func.isRequired */
+  user: PropTypes.string.isRequired,
+  menu: PropTypes.string.isRequired
 };
 
 export default TakeOrderHeader;

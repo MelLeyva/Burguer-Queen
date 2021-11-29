@@ -1,25 +1,15 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-console */
-import React, { useState, useEffect } from 'react';
-import Item from '../Breakfast/Item';
+import React from 'react';
+import DinnerItem from './DinnerItem';
 
-function Dinner() {
-  const [products, setProducts] = useState();
-  const getData = async () => {
-    const url = `http://localhost:5000/comidas`;
-    const getFetchData = await fetch(url).then((resul) => resul.json());
-    // console.log(getFetchData);
-    setProducts(getFetchData);
-  };
-  useEffect(() => {
-    getData();
-  }, []);
-
+function Dinner({ dinnerMenu }) {
   return (
     <>
       <section className="dinner-menu">
-        {products &&
-          products.map((product) => (
-            <Item product={product} key={product.id} />
+        {dinnerMenu &&
+          dinnerMenu.map((product) => (
+            <DinnerItem product={product} key={product.id} />
           ))}
       </section>
     </>
