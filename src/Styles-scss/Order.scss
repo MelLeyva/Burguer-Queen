@@ -1,26 +1,23 @@
 @import '../Styles-scss/Variables.scss';
 
 .orders-header {
-  position: fixed;
-  top: 90px;
-  left: 82px;
-  right: 82px;
+  // margin: 80px 70px 40px;
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
   justify-content: space-between;
-  
-  .menu-buttons{
-      button{
-        @include button-menu()
-      }
+
+  .menu-buttons {
+    button {
+      @include button-menu();
+    }
   }
   span {
     display: flex;
     align-items: center;
     gap: 20px;
-    .see-orders{
-        @include button-orders()
+    .see-orders {
+      @include button-orders();
     }
     div {
       display: flex;
@@ -38,14 +35,49 @@
     }
   }
 }
-.product{
-  display: flex;
-  width: 610px;
-  height: 160px;
-  .img-food{
-    width: 70px;
-    height: 70px;
+
+.take-order {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: center;
+  gap: 15px;
+  padding: 30px 15px;
+  height: 100%;
+  .breakfast-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .product {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+
+      .img-food {
+        width: 127px;
+        height: 105px;
+      }
+      section {
+        width: 212px;
+        font-family: $body;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 48px;
+        color: $mayonese;
+        list-style: none;
+        text-align: center;
+      }
+      .btns-counter {
+        display: flex;
+        align-items: center;
+        gap:10px;
+
+        button {
+          width: 57px;
+          height: 54px;
+          border-radius: 50px;
+        }
+      }
+    }
   }
-
 }
-

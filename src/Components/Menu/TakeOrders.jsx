@@ -7,11 +7,13 @@ import Dinner from './Dinner/Dinner';
 import TakeOrderHeader from './Header/TakeOrderHeader';
 import Check from './Check/Check';
 import HeaderMenu from '../../Hooks/HeaderMenu';
+import GetCheck from '../../Hooks/GetCheck';
 
 function TakeOrders({ user }) {
   const [dinnerMenu, setDinnerMenu] = useState();
   const [breakfastMenu, setBreakfastMenu] = useState();
   const { setMenu, menu } = HeaderMenu();
+  const { check, setCheck } = GetCheck();
 
   const getDataDinner = async () => {
     const url = `https://my-json-server.typicode.com/MelLeyva/Burguer-Queen/comidas`;
@@ -33,19 +35,57 @@ function TakeOrders({ user }) {
     getDataBreakfast();
   }, []);
 
-  // console.log(user.email);
-  // console.log(typeof handleMenu);
+  const addProduct = (item) => {
+    const exist = check.find((x) => x.id === item.id);
+    if (exist) {
+      setCheck(
+        check.map((x) =>
+          x.id === item.id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    } else {
+      setCheck([...check, { ...item, qty: 1 }]);
+    }
+  };
+
+  const restProduct = (item) => {
+    const exist = check.find((x) => x.id === item.id);
+    if (exist === undefined) {
+      return '';
+    }
+    if (exist.qty === 1) {
+      return setCheck(check.filter((x) => x.id !== item.id));
+    }
+    return setCheck(
+      check.map((x) =>
+        x.id === item.id ? { ...exist, qty: exist.qty - 1 } : x
+      )
+    );
+  };
+
+  const cancel = () => {
+    setCheck([]);
+  };
+
   return (
     <>
       <TakeOrderHeader user={user} setMenu={setMenu} menu={menu} />
-      <div>
+      <div className="take-order">
         {menu && menu === 'breakfast' ? (
-          <Breakfast breakfastMenu={breakfastMenu} />
+          <Breakfast
+            breakfastMenu={breakfastMenu}
+            addProduct={addProduct}
+            restProduct={restProduct}
+          />
         ) : (
-          <Dinner dinnerMenu={dinnerMenu} />
+          <Dinner
+            dinnerMenu={dinnerMenu}
+            addProduct={addProduct}
+            restProduct={restProduct}
+          />
         )}
+        <Check check={check} setCheck={setCheck} cancel={cancel} />
       </div>
-      <Check />
     </>
   );
 }

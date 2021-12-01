@@ -1,15 +1,20 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 import React from 'react';
-import Item from '../Item';
+import ItemDinner from './ItemDinner';
 
-function Dinner({ dinnerMenu }) {
+function Dinner({ dinnerMenu, addProduct, restProduct }) {
   return (
     <>
       <section className="dinner-menu">
         {dinnerMenu &&
           dinnerMenu.map((product) => (
-            <Item product={product} key={product.id} />
+            <ItemDinner
+              product={product}
+              key={product.id}
+              addProduct={addProduct}
+              restProduct={restProduct}
+            />
           ))}
       </section>
     </>
