@@ -5,7 +5,7 @@ import ItemBreakfast from './ItemBreakfast';
 
 // import Cart from '../../../Hooks/Cart';
 
-function Breakfast({ breakfastMenu, addProduct, restProduct }) {
+function Breakfast({ breakfastMenu, addProduct, restProduct, check }) {
   // const { check, setCheck } = Cart();
   // console.log(breakfastMenu);
 
@@ -19,6 +19,7 @@ function Breakfast({ breakfastMenu, addProduct, restProduct }) {
               key={product.id}
               addProduct={addProduct}
               restProduct={restProduct}
+              check={check}
             />
           ))}
       </section>

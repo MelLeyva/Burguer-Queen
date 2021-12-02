@@ -14,6 +14,7 @@ function TakeOrders({ user }) {
   const [breakfastMenu, setBreakfastMenu] = useState();
   const { setMenu, menu } = HeaderMenu();
   const { check, setCheck } = GetCheck();
+  const { client, setClient } = GetCheck();
 
   const getDataDinner = async () => {
     const url = `https://my-json-server.typicode.com/MelLeyva/Burguer-Queen/comidas`;
@@ -65,6 +66,7 @@ function TakeOrders({ user }) {
 
   const cancel = () => {
     setCheck([]);
+    setClient('');
   };
 
   return (
@@ -76,15 +78,23 @@ function TakeOrders({ user }) {
             breakfastMenu={breakfastMenu}
             addProduct={addProduct}
             restProduct={restProduct}
+            check={check}
           />
         ) : (
           <Dinner
             dinnerMenu={dinnerMenu}
             addProduct={addProduct}
             restProduct={restProduct}
+            check={check}
           />
         )}
-        <Check check={check} setCheck={setCheck} cancel={cancel} />
+        <Check
+          check={check}
+          setCheck={setCheck}
+          cancel={cancel}
+          client={client}
+          setClient={setClient}
+        />
       </div>
     </>
   );

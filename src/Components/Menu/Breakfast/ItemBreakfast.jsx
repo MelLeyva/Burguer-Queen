@@ -3,15 +3,15 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-function ItemBreakfast({ product, addProduct, restProduct }) {
+function ItemBreakfast({ product, addProduct, restProduct, check }) {
   const { name, image, price } = product;
 
   return (
     <>
       {product && (
         <>
-          <div className="product">
-            <img className="img-food" src={image} alt="product" />
+          <div className="product-bfast">
+            <img className="img-bfast" src={image} alt="product" />
             <section>
               <li>{name}</li>
               <li>${price}.00</li>
@@ -24,7 +24,11 @@ function ItemBreakfast({ product, addProduct, restProduct }) {
               >
                 -
               </button>
-              <p className="counter">0</p>
+              {check.map((item) => (
+                <p key={item.id} item={item}>
+                  {item.qty}
+                </p>
+              ))}
               <button
                 type="button"
                 className="btn-add"

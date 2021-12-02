@@ -8,6 +8,7 @@ function Prueba({ alimento }) {
     <div>
       <p>{alimento.name}</p>
       <p>{alimento.price}</p>
+      <p>{alimento.qty}</p>
     </div>
   );
 }
