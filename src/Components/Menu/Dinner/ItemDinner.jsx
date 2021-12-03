@@ -3,7 +3,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-function ItemDinner({ product, addProduct, restProduct }) {
+function ItemDinner({ product, addProduct, restProduct, check }) {
   const { name, image, price } = product;
 
   return (
@@ -24,7 +24,13 @@ function ItemDinner({ product, addProduct, restProduct }) {
               >
                 -
               </button>
-              <p className="counter">0</p>
+              {check.map((item) =>
+                product.id === item.id ? (
+                  <p key={item.id} item={item}>
+                    {item.qty}
+                  </p>
+                ) : null
+              )}
               <button
                 type="button"
                 className="btn-add"

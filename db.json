@@ -35,7 +35,7 @@
     ],
     "comidas": [
         {
-            "id": "001",
+            "id": "005",
             "name": "Hamburguesa simple",
             "price": 10,
             "image": "https://i.ibb.co/F5147tg/simple-hamburger.png",
@@ -43,7 +43,7 @@
             "dataEntry": "2021-04-23T18:25:43.511Z"
         },
         {
-            "id": "002",
+            "id": "006",
             "name": "Hamburguesa doble",
             "price": 15,
             "image": "https://i.ibb.co/TP0h3ds/duble-hamburguer.png",
@@ -51,7 +51,7 @@
             "dataEntry": "2021-04-23T18:25:43.511Z"
         },
         {
-            "id": "003",
+            "id": "007",
             "name": "Papas fritas",
             "price": 5,
             "image": "https://i.ibb.co/n720Rw5/french-fries.png",
@@ -59,7 +59,7 @@
             "dataEntry": "2021-04-23T18:25:43.511Z"
         },
         {
-            "id": "004",
+            "id": "008",
             "name": "Aros de cebolla",
             "price": 5,
             "image": "https://i.ibb.co/bP5PdrD/onion-rings.png",
@@ -67,7 +67,7 @@
             "dataEntry": "2021-04-23T18:25:43.511Z"
         },
         {
-            "id": "005",
+            "id": "009",
             "name": "Agua 500ml",
             "price": 5,
             "image": "https://i.ibb.co/R76VFKt/small-water.png",
@@ -75,7 +75,7 @@
             "dataEntry": "2021-04-23T18:25:43.511Z"
         },
         {
-            "id": "006",
+            "id": "010",
             "name": "Agua 750ml",
             "price": 7,
             "image": "https://i.ibb.co/Fw5LsCX/big-water.png",
@@ -83,7 +83,7 @@
             "dataEntry": "2021-04-23T18:25:43.511Z"
         },
         {
-            "id": "007",
+            "id": "011",
             "name": "Bebida/gaseosa 500ml",
             "price": 7,
             "image": "https://i.ibb.co/gTgPYDs/small-soda.png",
@@ -91,7 +91,7 @@
             "dataEntry": "2021-04-23T18:25:43.511Z"
         },
         {
-            "id": "008",
+            "id": "012",
             "name": "Bebida/gaseosa 750ml",
             "price": 10,
             "image": "https://i.ibb.co/4RFtfqd/big-soda.png",

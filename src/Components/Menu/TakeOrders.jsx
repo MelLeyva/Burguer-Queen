@@ -17,7 +17,7 @@ function TakeOrders({ user }) {
   const { client, setClient } = GetCheck();
 
   const getDataDinner = async () => {
-    const url = `https://my-json-server.typicode.com/MelLeyva/Burguer-Queen/comidas`;
+    const url = `http://localhost:5000/comidas`;
     const getFetchData = await fetch(url).then((resul) => resul.json());
     // console.log(getFetchData);
     setDinnerMenu(getFetchData);
@@ -27,7 +27,7 @@ function TakeOrders({ user }) {
   }, []);
 
   const getDataBreakfast = async () => {
-    const url = `https://my-json-server.typicode.com/MelLeyva/Burguer-Queen/desayunos`;
+    const url = `http://localhost:5000/desayunos`;
     const getFetchData = await fetch(url).then((resul) => resul.json());
     // console.log(getFetchData);
     setBreakfastMenu(getFetchData);
@@ -64,6 +64,13 @@ function TakeOrders({ user }) {
     );
   };
 
+  const deleteProduct = (item) => {
+    const exist = check.find((x) => x.id === item.id);
+    if (exist) {
+      setCheck(check.filter((x) => x.id !== item.id));
+    }
+  };
+
   const cancel = () => {
     setCheck([]);
     setClient('');
@@ -73,27 +80,32 @@ function TakeOrders({ user }) {
     <>
       <TakeOrderHeader user={user} setMenu={setMenu} menu={menu} />
       <div className="take-order">
-        {menu && menu === 'breakfast' ? (
-          <Breakfast
-            breakfastMenu={breakfastMenu}
-            addProduct={addProduct}
-            restProduct={restProduct}
-            check={check}
-          />
-        ) : (
-          <Dinner
-            dinnerMenu={dinnerMenu}
-            addProduct={addProduct}
-            restProduct={restProduct}
-            check={check}
-          />
-        )}
+        <>
+          {menu === 'breakfast' ? (
+            <Breakfast
+              breakfastMenu={breakfastMenu}
+              addProduct={addProduct}
+              restProduct={restProduct}
+              check={check}
+            />
+          ) : null}
+        </>
+        <>
+          {menu === 'dinner' ? (
+            <Dinner
+              dinnerMenu={dinnerMenu}
+              addProduct={addProduct}
+              restProduct={restProduct}
+              check={check}
+            />
+          ) : null}
+        </>
         <Check
           check={check}
-          setCheck={setCheck}
-          cancel={cancel}
           client={client}
           setClient={setClient}
+          deleteProduct={deleteProduct}
+          cancel={cancel}
         />
       </div>
     </>

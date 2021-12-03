@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React from 'react';
@@ -24,11 +25,13 @@ function ItemBreakfast({ product, addProduct, restProduct, check }) {
               >
                 -
               </button>
-              {check.map((item) => (
-                <p key={item.id} item={item}>
-                  {item.qty}
-                </p>
-              ))}
+              {check.map((item) =>
+                product.id === item.id ? (
+                  <p key={item.id} item={item}>
+                    {item.qty}
+                  </p>
+                ) : null
+              )}
               <button
                 type="button"
                 className="btn-add"
