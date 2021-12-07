@@ -1,20 +1,21 @@
 /* eslint-disable no-console */
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
-import '../../Styles-scss/Order.scss';
-import UseOrderHeader from '../../Hooks/UseOrderHeader';
 import Breakfast from './Breakfast/Breakfast';
 import Dinner from './Dinner/Dinner';
 import TakeOrderHeader from './Header/TakeOrderHeader';
 import Check from './Check/Check';
+import UseHeader from '../../Hooks/UseHeader';
+import UseComanda from '../../Hooks/UseComanda';
 
 function TakeOrders({ user }) {
   const [dinnerMenu, setDinnerMenu] = useState();
   const [breakfastMenu, setBreakfastMenu] = useState();
-  const { handleMenu, menu } = UseOrderHeader();
+  const { setMenu, menu } = UseHeader();
+  const { resume, setResume, client, setClient } = UseComanda();
 
   const getDataDinner = async () => {
-    const url = `https://my-json-server.typicode.com/MelLeyva/Burguer-Queen/comidas`;
+    const url = `http://localhost:5000/comidas`;
     const getFetchData = await fetch(url).then((resul) => resul.json());
     // console.log(getFetchData);
     setDinnerMenu(getFetchData);
@@ -24,7 +25,7 @@ function TakeOrders({ user }) {
   }, []);
 
   const getDataBreakfast = async () => {
-    const url = `https://my-json-server.typicode.com/MelLeyva/Burguer-Queen/desayunos`;
+    const url = `http://localhost:5000/desayunos`;
     const getFetchData = await fetch(url).then((resul) => resul.json());
     // console.log(getFetchData);
     setBreakfastMenu(getFetchData);
@@ -32,19 +33,79 @@ function TakeOrders({ user }) {
   useEffect(() => {
     getDataBreakfast();
   }, []);
-  // console.log(user.email);
-  // console.log(typeof handleMenu);
+
+  const addProduct = (item) => {
+    const exist = resume.find((x) => x.id === item.id);
+    if (exist) {
+      setResume(
+        resume.map((x) =>
+          x.id === item.id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    } else {
+      setResume([...resume, { ...item, qty: 1 }]);
+    }
+  };
+
+  const restProduct = (item) => {
+    const exist = resume.find((x) => x.id === item.id);
+    if (exist === undefined) {
+      return '';
+    }
+    if (exist.qty === 1) {
+      return setResume(resume.filter((x) => x.id !== item.id));
+    }
+    return setResume(
+      resume.map((x) =>
+        x.id === item.id ? { ...exist, qty: exist.qty - 1 } : x
+      )
+    );
+  };
+
+  const deleteProduct = (item) => {
+    const exist = resume.find((x) => x.id === item.id);
+    if (exist) {
+      setResume(resume.filter((x) => x.id !== item.id));
+    }
+  };
+
+  const cancel = () => {
+    setResume([]);
+    setClient('');
+  };
+
   return (
     <>
-      <TakeOrderHeader user={user} handleMenu={handleMenu} menu={menu} />
-      <div>
-        {menu && menu === 'breakfast' ? (
-          <Breakfast breakfastMenu={breakfastMenu} />
-        ) : (
-          <Dinner dinnerMenu={dinnerMenu} />
-        )}
+      <TakeOrderHeader user={user} setMenu={setMenu} menu={menu} />
+      <div className="take-order">
+        <>
+          {menu === 'breakfast' ? (
+            <Breakfast
+              breakfastMenu={breakfastMenu}
+              addProduct={addProduct}
+              restProduct={restProduct}
+              resume={resume}
+            />
+          ) : null}
+        </>
+        <>
+          {menu === 'dinner' ? (
+            <Dinner
+              dinnerMenu={dinnerMenu}
+              addProduct={addProduct}
+              restProduct={restProduct}
+              resume={resume}
+            />
+          ) : null}
+        </>
+        <Check
+          resume={resume}
+          client={client}
+          setClient={setClient}
+          deleteProduct={deleteProduct}
+          cancel={cancel}
+        />
       </div>
-      <Check />
     </>
   );
 }

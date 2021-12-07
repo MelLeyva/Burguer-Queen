@@ -6,7 +6,7 @@ import { auth } from './firebase-config';
 import Views from './Components/Views';
 import './Styles-scss/App.scss';
 import './Styles-scss/LogIn.scss';
-import './Styles-scss/Order.scss';
+import './Styles-scss/Order-style/Order.scss';
 
 function App() {
   const [user, setUser] = useState(null);

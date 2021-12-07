@@ -6,38 +6,62 @@ $title: 'Fredericka the Great';
 $sub-title: 'Special Elite';
 $body: 'Kalam', cursive;
 //color
-$chesse: #F2F466;
-$lettus: #B1CC47;
-$tomato: #FA5325;
+$chesse: #f2f466;
+$lettus: #b1cc47;
+$tomato: #fa5325;
 $mayonese: #fffffa;
 
 @mixin button-menu {
-    height: 64px;
-    background: none;
-    padding: 0 10px;
-    line-height: 64px;
-    border: 4px solid $mayonese;
-    box-sizing: border-box;
-    border-radius: 10px;
-    font-family: $sub-title;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 40px;
-    color: $mayonese;
-    opacity: .8;
+  height: 64px;
+  background: none;
+  padding: 0 10px;
+  line-height: 64px;
+  border: 4px solid $mayonese;
+  box-sizing: border-box;
+  border-radius: 10px;
+  font-family: $sub-title;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  color: $mayonese;
+  opacity: 0.8;
 }
 @mixin button-orders {
-    height: 64px;
-    background: $lettus;
-    padding: 0 10px;
-    line-height: 64px;
-    border: 4px solid $lettus;
-    box-sizing: border-box;
-    border-radius: 10px;
-    font-family: $sub-title;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 40px;
-    color: black;
-    opacity: .9;
+  height: 64px;
+  background: $lettus;
+  padding: 0 10px;
+  line-height: 64px;
+  border: 4px solid $lettus;
+  box-sizing: border-box;
+  border-radius: 10px;
+  font-family: $sub-title;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  color: black;
+  opacity: 0.9;
+}
+@mixin btn-item {
+  width: 55px;
+  height: 55px;
+  border-radius: 50px;
+  background: none;
+  font-family: $title;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 45px;
+}
+@mixin btns-check {
+  height: 65px;
+  margin: 20px;
+  border-radius: 10px;
+  font-family: 'Special Elite';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  padding: 5px 10px;
+  line-height: 65px;
+  border: none;
+  opacity: 0.8;
 }
