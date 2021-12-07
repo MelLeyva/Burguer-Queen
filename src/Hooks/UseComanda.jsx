@@ -1,15 +1,15 @@
 import { useState } from 'react';
 
-function GetCheck() {
-  const [check, setCheck] = useState([]);
+function UseComanda() {
+  const [resume, setResume] = useState([]);
   const [client, setClient] = useState('');
 
   return {
-    check,
-    setCheck,
+    resume,
+    setResume,
     client,
     setClient
   };
 }
 
-export default GetCheck;
+export default UseComanda;

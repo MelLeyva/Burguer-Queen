@@ -3,15 +3,15 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-function ItemDinner({ product, addProduct, restProduct, check }) {
-  const { name, image, price } = product;
+function ItemDinner({ product, addProduct, restProduct, resume }) {
+  const { name, image, price, id } = product;
 
   return (
     <>
       {product && (
         <>
-          <div className="product">
-            <img className="img-food" src={image} alt="product" />
+          <div className="product-dinner">
+            <img className={`img${id}`} src={image} alt="product" />
             <section>
               <li>{name}</li>
               <li>${price}.00</li>
@@ -24,7 +24,7 @@ function ItemDinner({ product, addProduct, restProduct, check }) {
               >
                 -
               </button>
-              {check.map((item) =>
+              {resume.map((item) =>
                 product.id === item.id ? (
                   <p key={item.id} item={item}>
                     {item.qty}

@@ -1,20 +1,18 @@
 /* eslint-disable no-console */
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
-import '../../Styles-scss/Order.scss';
 import Breakfast from './Breakfast/Breakfast';
 import Dinner from './Dinner/Dinner';
 import TakeOrderHeader from './Header/TakeOrderHeader';
 import Check from './Check/Check';
-import HeaderMenu from '../../Hooks/HeaderMenu';
-import GetCheck from '../../Hooks/GetCheck';
+import UseHeader from '../../Hooks/UseHeader';
+import UseComanda from '../../Hooks/UseComanda';
 
 function TakeOrders({ user }) {
   const [dinnerMenu, setDinnerMenu] = useState();
   const [breakfastMenu, setBreakfastMenu] = useState();
-  const { setMenu, menu } = HeaderMenu();
-  const { check, setCheck } = GetCheck();
-  const { client, setClient } = GetCheck();
+  const { setMenu, menu } = UseHeader();
+  const { resume, setResume, client, setClient } = UseComanda();
 
   const getDataDinner = async () => {
     const url = `http://localhost:5000/comidas`;
@@ -37,42 +35,42 @@ function TakeOrders({ user }) {
   }, []);
 
   const addProduct = (item) => {
-    const exist = check.find((x) => x.id === item.id);
+    const exist = resume.find((x) => x.id === item.id);
     if (exist) {
-      setCheck(
-        check.map((x) =>
+      setResume(
+        resume.map((x) =>
           x.id === item.id ? { ...exist, qty: exist.qty + 1 } : x
         )
       );
     } else {
-      setCheck([...check, { ...item, qty: 1 }]);
+      setResume([...resume, { ...item, qty: 1 }]);
     }
   };
 
   const restProduct = (item) => {
-    const exist = check.find((x) => x.id === item.id);
+    const exist = resume.find((x) => x.id === item.id);
     if (exist === undefined) {
       return '';
     }
     if (exist.qty === 1) {
-      return setCheck(check.filter((x) => x.id !== item.id));
+      return setResume(resume.filter((x) => x.id !== item.id));
     }
-    return setCheck(
-      check.map((x) =>
+    return setResume(
+      resume.map((x) =>
         x.id === item.id ? { ...exist, qty: exist.qty - 1 } : x
       )
     );
   };
 
   const deleteProduct = (item) => {
-    const exist = check.find((x) => x.id === item.id);
+    const exist = resume.find((x) => x.id === item.id);
     if (exist) {
-      setCheck(check.filter((x) => x.id !== item.id));
+      setResume(resume.filter((x) => x.id !== item.id));
     }
   };
 
   const cancel = () => {
-    setCheck([]);
+    setResume([]);
     setClient('');
   };
 
@@ -86,7 +84,7 @@ function TakeOrders({ user }) {
               breakfastMenu={breakfastMenu}
               addProduct={addProduct}
               restProduct={restProduct}
-              check={check}
+              resume={resume}
             />
           ) : null}
         </>
@@ -96,12 +94,12 @@ function TakeOrders({ user }) {
               dinnerMenu={dinnerMenu}
               addProduct={addProduct}
               restProduct={restProduct}
-              check={check}
+              resume={resume}
             />
           ) : null}
         </>
         <Check
-          check={check}
+          resume={resume}
           client={client}
           setClient={setClient}
           deleteProduct={deleteProduct}

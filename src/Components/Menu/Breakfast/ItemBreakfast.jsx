@@ -4,7 +4,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-function ItemBreakfast({ product, addProduct, restProduct, check }) {
+function ItemBreakfast({ product, addProduct, restProduct, resume }) {
   const { name, image, price } = product;
 
   return (
@@ -25,7 +25,7 @@ function ItemBreakfast({ product, addProduct, restProduct, check }) {
               >
                 -
               </button>
-              {check.map((item) =>
+              {resume.map((item) =>
                 product.id === item.id ? (
                   <p key={item.id} item={item}>
                     {item.qty}

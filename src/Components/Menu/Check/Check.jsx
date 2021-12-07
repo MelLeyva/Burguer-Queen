@@ -4,15 +4,15 @@
 import React from 'react';
 import Food from './Food';
 
-function Check({ check, client, setClient, cancel, deleteProduct }) {
-  const total = check.reduce((a, c) => a + c.price * c.qty, 0);
+function Check({ resume, client, setClient, cancel, deleteProduct }) {
+  const total = resume.reduce((a, c) => a + c.price * c.qty, 0);
   const iva = total * 0.16;
   const totalCheck = total + iva;
-  console.log(iva);
+  // console.log(iva);
   return (
     <div className="check">
       <form className="order-info">
-        <label>
+        <label className="client-label">
           Cliente:
           <input
             className="client"
@@ -23,25 +23,35 @@ function Check({ check, client, setClient, cancel, deleteProduct }) {
             }}
           />
         </label>
-        {check.length === 0 ? (
+        {resume.length === 0 ? (
           <p className="empty-check">No hay alimentos seleccionados</p>
         ) : (
-          <>
-            <div>
-              {check.map((alimento) => (
-                <Food
-                  key={alimento.id}
-                  alimento={alimento}
-                  deleteProduct={deleteProduct}
-                />
+          <div className="full-order">
+            <span className="order-header">
+              <li>Producto</li>
+              <li>Cant.</li>
+              <li className="price-hd">Costo</li>
+            </span>
+            <div className="div-food">
+              {resume.map((food) => (
+                <Food key={food.id} food={food} deleteProduct={deleteProduct} />
               ))}
             </div>
-            <div>
-              <p>Total:{total}</p>
-              <p>IVA:{iva}</p>
-              <p>Total + IVA:{totalCheck}</p>
+            <div className="total">
+              <label>
+                Total:
+                <p>$ {total}</p>
+              </label>
+              <label>
+                IVA:
+                <p>$ {iva.toFixed(2)}</p>
+              </label>
+              <label>
+                Total + IVA:
+                <p>$ {totalCheck.toFixed(2)}</p>
+              </label>
             </div>
-          </>
+          </div>
         )}
         <div>
           <button className="cancel" type="button" onClick={cancel}>

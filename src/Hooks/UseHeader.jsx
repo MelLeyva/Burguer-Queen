@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { useState } from 'react';
 
-function HeaderMenu() {
+function UseHeader() {
   const [menu, setMenu] = useState('breakfast');
 
   return {
@@ -10,4 +10,4 @@ function HeaderMenu() {
   };
 }
 
-export default HeaderMenu;
+export default UseHeader;

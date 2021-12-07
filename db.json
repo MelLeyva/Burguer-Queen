@@ -38,7 +38,7 @@
             "id": "005",
             "name": "Hamburguesa simple",
             "price": 10,
-            "image": "https://i.ibb.co/F5147tg/simple-hamburger.png",
+            "image": "https://i.ibb.co/ggQwpyZ/simple-hamburger.png",
             "type": "Comida",
             "dataEntry": "2021-04-23T18:25:43.511Z"
         },
@@ -46,7 +46,7 @@
             "id": "006",
             "name": "Hamburguesa doble",
             "price": 15,
-            "image": "https://i.ibb.co/TP0h3ds/duble-hamburguer.png",
+            "image": "https://i.ibb.co/c8MznDB/duble-hamburguer.png",
             "type": "Comida",
             "dataEntry": "2021-04-23T18:25:43.511Z"
         },
@@ -54,7 +54,7 @@
             "id": "007",
             "name": "Papas fritas",
             "price": 5,
-            "image": "https://i.ibb.co/n720Rw5/french-fries.png",
+            "image": "https://i.ibb.co/68zsfK2/french-fries.png",
             "type": "Comida",
             "dataEntry": "2021-04-23T18:25:43.511Z"
         },
@@ -62,7 +62,7 @@
             "id": "008",
             "name": "Aros de cebolla",
             "price": 5,
-            "image": "https://i.ibb.co/bP5PdrD/onion-rings.png",
+            "image": "https://i.ibb.co/pWDFXbH/onion-rings.png",
             "type": "Comida",
             "dataEntry": "2021-04-23T18:25:43.511Z"
         },
@@ -70,7 +70,7 @@
             "id": "009",
             "name": "Agua 500ml",
             "price": 5,
-            "image": "https://i.ibb.co/R76VFKt/small-water.png",
+            "image": "https://i.ibb.co/mBBZgRT/small-water.png",
             "type": "Comida",
             "dataEntry": "2021-04-23T18:25:43.511Z"
         },
@@ -78,7 +78,7 @@
             "id": "010",
             "name": "Agua 750ml",
             "price": 7,
-            "image": "https://i.ibb.co/Fw5LsCX/big-water.png",
+            "image": "https://i.ibb.co/J3dP9g5/big-water.png",
             "type": "Comida",
             "dataEntry": "2021-04-23T18:25:43.511Z"
         },
@@ -86,7 +86,7 @@
             "id": "011",
             "name": "Bebida/gaseosa 500ml",
             "price": 7,
-            "image": "https://i.ibb.co/gTgPYDs/small-soda.png",
+            "image": "https://i.ibb.co/ZWhBzbM/small-soda.png",
             "type": "Comida",
             "dataEntry": "2021-04-23T18:25:43.511Z"
         },
@@ -94,9 +94,10 @@
             "id": "012",
             "name": "Bebida/gaseosa 750ml",
             "price": 10,
-            "image": "https://i.ibb.co/4RFtfqd/big-soda.png",
+            "image": "https://i.ibb.co/2yDFXQH/big-soda.png",
             "type": "Comida",
             "dataEntry": "2021-04-23T18:25:43.511Z"
         }
-    ]
+    ],
+    "cocina": []
 }

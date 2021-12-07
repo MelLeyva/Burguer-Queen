@@ -5,7 +5,7 @@ import ItemBreakfast from './ItemBreakfast';
 
 // import Cart from '../../../Hooks/Cart';
 
-function Breakfast({ breakfastMenu, addProduct, restProduct, check }) {
+function Breakfast({ breakfastMenu, addProduct, restProduct, resume }) {
   return (
     <>
       <section className="breakfast-menu">
@@ -16,7 +16,7 @@ function Breakfast({ breakfastMenu, addProduct, restProduct, check }) {
               key={product.id}
               addProduct={addProduct}
               restProduct={restProduct}
-              check={check}
+              resume={resume}
             />
           ))}
       </section>
