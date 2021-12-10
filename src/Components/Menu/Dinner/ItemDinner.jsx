@@ -3,7 +3,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-function ItemDinner({ product, addProduct, restProduct, resume }) {
+function ItemDinner({ product, addProduct, restProduct, resume, setResume }) {
   const { name, image, price, id } = product;
 
   return (
@@ -20,7 +20,7 @@ function ItemDinner({ product, addProduct, restProduct, resume }) {
               <button
                 type="button"
                 className="btn-rest"
-                onClick={() => restProduct(product)}
+                onClick={() => restProduct(product, setResume, resume)}
               >
                 -
               </button>
@@ -34,7 +34,7 @@ function ItemDinner({ product, addProduct, restProduct, resume }) {
               <button
                 type="button"
                 className="btn-add"
-                onClick={() => addProduct(product)}
+                onClick={() => addProduct(product, setResume, resume)}
               >
                 +
               </button>

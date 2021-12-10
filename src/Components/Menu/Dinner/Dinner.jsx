@@ -5,7 +5,7 @@ import React from 'react';
 import ItemDinner from './ItemDinner';
 // import ItemDinner from './ItemDinner';
 
-function Dinner({ dinnerMenu, addProduct, restProduct, resume }) {
+function Dinner({ dinnerMenu, addProduct, restProduct, resume, setResume }) {
   return (
     <>
       <section className="dinner-menu">
@@ -17,6 +17,7 @@ function Dinner({ dinnerMenu, addProduct, restProduct, resume }) {
               addProduct={addProduct}
               restProduct={restProduct}
               resume={resume}
+              setResume={setResume}
             />
           ))}
       </section>

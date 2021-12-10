@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { logInAuth /* , logOut  , errorMessage */ } from '../Lib/firebase';
 import LogInPage from './Log-In/LogIn';
 import TakeOrders from './Menu/TakeOrders';
+// import Kitchen from './Kitchen/Kitchen';
 
 const Views = ({ user }) => (
   <>

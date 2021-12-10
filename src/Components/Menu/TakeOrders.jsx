@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-console */
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
@@ -7,12 +8,26 @@ import TakeOrderHeader from './Header/TakeOrderHeader';
 import Check from './Check/Check';
 import UseHeader from '../../Hooks/UseHeader';
 import UseComanda from '../../Hooks/UseComanda';
+import helpHttp from '../../helpers/helpHttp';
+import {
+  addProduct,
+  restProduct,
+  deleteProduct,
+  cancel
+} from '../../Lib/orderComands';
+// import UseOrders from '../../Lib/UseOrders';
 
 function TakeOrders({ user }) {
   const [dinnerMenu, setDinnerMenu] = useState();
   const [breakfastMenu, setBreakfastMenu] = useState();
+  const [orders, setOrders] = useState([]);
+
   const { setMenu, menu } = UseHeader();
   const { resume, setResume, client, setClient } = UseComanda();
+  // const { addProduct, restProduct, deleteProduct, cancel } = UseOrders();
+
+  const api = helpHttp();
+  const urlKitchen = 'http://localhost:5000/orders';
 
   const getDataDinner = async () => {
     const url = `http://localhost:5000/comidas`;
@@ -34,7 +49,97 @@ function TakeOrders({ user }) {
     getDataBreakfast();
   }, []);
 
-  const addProduct = (item) => {
+  const newOrder = () => {
+    console.log({ resume });
+    const body = {
+      id: Date.now(),
+      client,
+      resume,
+      date: new Date().toLocaleDateString(),
+      timeIn: new Date().toLocaleTimeString(),
+      status: 'pending'
+    };
+    // console.log(newResume);
+    // eslint-disable-next-line prefer-const
+    let options = {
+      body,
+      headers: { 'Content-Type': 'application/json' }
+    };
+    api.post(urlKitchen, options).then((res) => {
+      // console.log(newResume);
+      console.log(res);
+      if (!res.err) {
+        setOrders([...orders, res]);
+      } else {
+        console.log('esto fallo');
+      }
+      console.log(orders);
+    });
+  };
+
+  return (
+    <>
+      <TakeOrderHeader user={user} setMenu={setMenu} menu={menu} />
+      <div className="take-order">
+        <>
+          {menu === 'breakfast' ? (
+            <Breakfast
+              breakfastMenu={breakfastMenu}
+              addProduct={addProduct}
+              restProduct={restProduct}
+              resume={resume}
+              setResume={setResume}
+            />
+          ) : null}
+        </>
+        <>
+          {menu === 'dinner' ? (
+            <Dinner
+              dinnerMenu={dinnerMenu}
+              addProduct={addProduct}
+              restProduct={restProduct}
+              resume={resume}
+              setResume={setResume}
+            />
+          ) : null}
+        </>
+        <Check
+          resume={resume}
+          setResume={setResume}
+          client={client}
+          setClient={setClient}
+          deleteProduct={deleteProduct}
+          cancel={cancel}
+          // newResume={newResume}
+          newOrder={newOrder}
+        />
+      </div>
+    </>
+  );
+}
+
+TakeOrders.propTypes = {
+  user: PropTypes.string.isRequired
+};
+
+export default TakeOrders;
+
+// console.log(newResume);
+
+/*   useEffect(() => {
+    api.get(urlKitchen).then((res) => {
+      // console.log(res);
+      if (!res.err) {
+        setOrders(res);
+        // setError(null);
+      } else {
+        setOrders(null);
+        // setError(res);
+      }
+    });
+    // console.log(orders);
+  }, []); */
+/*   const addProduct = (item) => {
     const exist = resume.find((x) => x.id === item.id);
     if (exist) {
       setResume(
@@ -45,7 +150,7 @@ function TakeOrders({ user }) {
     } else {
       setResume([...resume, { ...item, qty: 1 }]);
     }
-  };
+  }; 
 
   const restProduct = (item) => {
     const exist = resume.find((x) => x.id === item.id);
@@ -70,48 +175,9 @@ function TakeOrders({ user }) {
   };
 
   const cancel = () => {
-    setResume([]);
-    setClient('');
-  };
-
-  return (
-    <>
-      <TakeOrderHeader user={user} setMenu={setMenu} menu={menu} />
-      <div className="take-order">
-        <>
-          {menu === 'breakfast' ? (
-            <Breakfast
-              breakfastMenu={breakfastMenu}
-              addProduct={addProduct}
-              restProduct={restProduct}
-              resume={resume}
-            />
-          ) : null}
-        </>
-        <>
-          {menu === 'dinner' ? (
-            <Dinner
-              dinnerMenu={dinnerMenu}
-              addProduct={addProduct}
-              restProduct={restProduct}
-              resume={resume}
-            />
-          ) : null}
-        </>
-        <Check
-          resume={resume}
-          client={client}
-          setClient={setClient}
-          deleteProduct={deleteProduct}
-          cancel={cancel}
-        />
-      </div>
-    </>
-  );
-}
-
-TakeOrders.propTypes = {
-  user: PropTypes.string.isRequired
-};
-
-export default TakeOrders;
+    const confirmBox = window.confirm('¿Desea cancelar la orden?');
+    if (confirmBox === true) {
+      setClient('');
+      setResume([]);
+    }
+  }; */

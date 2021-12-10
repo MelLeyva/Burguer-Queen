@@ -1,103 +1,171 @@
 {
-    "desayunos": [
+  "desayunos": [
+    {
+      "id": "001",
+      "name": "Café americano",
+      "price": 5,
+      "image": "https://i.ibb.co/j55gKKF/black-coffe.png",
+      "type": "Desayuno"
+    },
+    {
+      "id": "002",
+      "name": "Café con leche",
+      "price": 7,
+      "image": "https://i.ibb.co/y6J5nCW/milk-coffe.png",
+      "type": "Desayuno"
+    },
+    {
+      "id": "003",
+      "name": "Sandwich de jamón con queso",
+      "price": 10,
+      "image": "https://i.ibb.co/VNkhzBM/sandwich.png",
+      "type": "Desayuno"
+    },
+    {
+      "id": "004",
+      "name": "Jugo de frutas natural",
+      "price": 7,
+      "image": "https://i.ibb.co/4NR7Jwp/juice.png",
+      "type": "Desayuno"
+    }
+  ],
+  "comidas": [
+    {
+      "id": "005",
+      "name": "Hamburguesa simple",
+      "price": 10,
+      "image": "https://i.ibb.co/ggQwpyZ/simple-hamburger.png",
+      "type": "Comida"
+    },
+    {
+      "id": "006",
+      "name": "Hamburguesa doble",
+      "price": 15,
+      "image": "https://i.ibb.co/c8MznDB/duble-hamburguer.png",
+      "type": "Comida"
+    },
+    {
+      "id": "007",
+      "name": "Papas fritas",
+      "price": 5,
+      "image": "https://i.ibb.co/68zsfK2/french-fries.png",
+      "type": "Comida"
+    },
+    {
+      "id": "008",
+      "name": "Aros de cebolla",
+      "price": 5,
+      "image": "https://i.ibb.co/pWDFXbH/onion-rings.png",
+      "type": "Comida"
+    },
+    {
+      "id": "009",
+      "name": "Agua 500ml",
+      "price": 5,
+      "image": "https://i.ibb.co/mBBZgRT/small-water.png",
+      "type": "Comida"
+    },
+    {
+      "id": "010",
+      "name": "Agua 750ml",
+      "price": 7,
+      "image": "https://i.ibb.co/J3dP9g5/big-water.png",
+      "type": "Comida"
+    },
+    {
+      "id": "011",
+      "name": "Bebida/gaseosa 500ml",
+      "price": 7,
+      "image": "https://i.ibb.co/ZWhBzbM/small-soda.png",
+      "type": "Comida"
+    },
+    {
+      "id": "012",
+      "name": "Bebida/gaseosa 750ml",
+      "price": 10,
+      "image": "https://i.ibb.co/2yDFXQH/big-soda.png",
+      "type": "Comida"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1639012658264,
+      "client": "Raul",
+      "resume": [
         {
-            "id": "001",
-            "name": "Café americano",
-            "price": 5,
-            "image": "https://i.ibb.co/j55gKKF/black-coffe.png",
-            "type": "Desayuno",
-            "dataEntry": "2021-04-23T18:25:43.511Z"
+          "id": "001",
+          "name": "Café americano",
+          "price": 5,
+          "image": "https://i.ibb.co/j55gKKF/black-coffe.png",
+          "type": "Desayuno",
+          "dataEntry": "2021-04-23T18:25:43.511Z",
+          "qty": 1
         },
         {
-            "id": "002",
-            "name": "Café con leche",
-            "price": 7,
-            "image": "https://i.ibb.co/y6J5nCW/milk-coffe.png",
-            "type": "Desayuno",
-            "dataEntry": "2021-04-23T18:25:43.511Z"
-        },
-        {
-            "id": "003",
-            "name": "Sandwich de jamón con queso",
-            "price": 10,
-            "image": "https://i.ibb.co/VNkhzBM/sandwich.png",
-            "type": "Desayuno",
-            "dataEntry": "2021-04-23T18:25:43.511Z"
-        },
-        {
-            "id": "004",
-            "name": "Jugo de frutas natural",
-            "price": 7,
-            "image": "https://i.ibb.co/4NR7Jwp/juice.png",
-            "type": "Desayuno",
-            "dataEntry": "2021-04-23T18:25:43.511Z"
+          "id": "002",
+          "name": "Café con leche",
+          "price": 7,
+          "image": "https://i.ibb.co/y6J5nCW/milk-coffe.png",
+          "type": "Desayuno",
+          "dataEntry": "2021-04-23T18:25:43.511Z",
+          "qty": 1
         }
-    ],
-    "comidas": [
+      ],
+      "date": "8/12/2021",
+      "timeIn": "19:17:38",
+      "status": "pending"
+    },
+    {
+      "id": 1639073650118,
+      "client": "Melissa",
+      "resume": [
         {
-            "id": "005",
-            "name": "Hamburguesa simple",
-            "price": 10,
-            "image": "https://i.ibb.co/ggQwpyZ/simple-hamburger.png",
-            "type": "Comida",
-            "dataEntry": "2021-04-23T18:25:43.511Z"
+          "id": "001",
+          "name": "Café americano",
+          "price": 5,
+          "image": "https://i.ibb.co/j55gKKF/black-coffe.png",
+          "type": "Desayuno",
+          "qty": 1
         },
         {
-            "id": "006",
-            "name": "Hamburguesa doble",
-            "price": 15,
-            "image": "https://i.ibb.co/c8MznDB/duble-hamburguer.png",
-            "type": "Comida",
-            "dataEntry": "2021-04-23T18:25:43.511Z"
-        },
-        {
-            "id": "007",
-            "name": "Papas fritas",
-            "price": 5,
-            "image": "https://i.ibb.co/68zsfK2/french-fries.png",
-            "type": "Comida",
-            "dataEntry": "2021-04-23T18:25:43.511Z"
-        },
-        {
-            "id": "008",
-            "name": "Aros de cebolla",
-            "price": 5,
-            "image": "https://i.ibb.co/pWDFXbH/onion-rings.png",
-            "type": "Comida",
-            "dataEntry": "2021-04-23T18:25:43.511Z"
-        },
-        {
-            "id": "009",
-            "name": "Agua 500ml",
-            "price": 5,
-            "image": "https://i.ibb.co/mBBZgRT/small-water.png",
-            "type": "Comida",
-            "dataEntry": "2021-04-23T18:25:43.511Z"
-        },
-        {
-            "id": "010",
-            "name": "Agua 750ml",
-            "price": 7,
-            "image": "https://i.ibb.co/J3dP9g5/big-water.png",
-            "type": "Comida",
-            "dataEntry": "2021-04-23T18:25:43.511Z"
-        },
-        {
-            "id": "011",
-            "name": "Bebida/gaseosa 500ml",
-            "price": 7,
-            "image": "https://i.ibb.co/ZWhBzbM/small-soda.png",
-            "type": "Comida",
-            "dataEntry": "2021-04-23T18:25:43.511Z"
-        },
-        {
-            "id": "012",
-            "name": "Bebida/gaseosa 750ml",
-            "price": 10,
-            "image": "https://i.ibb.co/2yDFXQH/big-soda.png",
-            "type": "Comida",
-            "dataEntry": "2021-04-23T18:25:43.511Z"
+          "id": "002",
+          "name": "Café con leche",
+          "price": 7,
+          "image": "https://i.ibb.co/y6J5nCW/milk-coffe.png",
+          "type": "Desayuno",
+          "qty": 1
         }
-    ],
-    "cocina": []
+      ],
+      "date": "9/12/2021",
+      "timeIn": "12:14:10",
+      "status": "pending"
+    },
+    {
+      "id": 1639074886579,
+      "client": "Raul",
+      "resume": [
+        {
+          "id": "001",
+          "name": "Café americano",
+          "price": 5,
+          "image": "https://i.ibb.co/j55gKKF/black-coffe.png",
+          "type": "Desayuno",
+          "dataEntry": "2021-04-23T18:25:43.511Z",
+          "qty": 1
+        },
+        {
+          "id": "002",
+          "name": "Café con leche",
+          "price": 7,
+          "image": "https://i.ibb.co/y6J5nCW/milk-coffe.png",
+          "type": "Desayuno",
+          "dataEntry": "2021-04-23T18:25:43.511Z",
+          "qty": 1
+        }
+      ],
+      "date": "9/12/2021",
+      "timeIn": "12:34:46",
+      "status": "pending"
+    }
+  ]
 }
