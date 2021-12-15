@@ -3,12 +3,14 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
+import Cookies from 'universal-cookie';
 import icon from '../../../img/logOut.png';
-import { logOut } from '../../../Lib/firebase';
+import LogInJSON from '../../../Lib/LogInJSON';
 
-function TakeOrderHeader({ user, setMenu }) {
-  // console.log(typeof setMenu);
-  // console.log(typeof menu);
+const cookies = new Cookies();
+function TakeOrderHeader({ setMenu }) {
+  const { removeCookies } = LogInJSON();
+  const userName = cookies.get('name').firstName;
   const handleMenu = (typeMenu) => {
     setMenu(typeMenu);
   };
@@ -41,14 +43,13 @@ function TakeOrderHeader({ user, setMenu }) {
             Pedidos
           </button>
           <div className="waiter">
-            <p className="avatar">{user}</p>
+            <p className="avatar">{userName}</p>
           </div>
           <button
             className="exit"
             type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              logOut();
+            onClick={() => {
+              removeCookies();
               // console.log('ya salí');
             }}
           >
@@ -61,7 +62,6 @@ function TakeOrderHeader({ user, setMenu }) {
 }
 
 TakeOrderHeader.propTypes = {
-  user: PropTypes.string.isRequired,
   menu: PropTypes.string.isRequired
 };
 

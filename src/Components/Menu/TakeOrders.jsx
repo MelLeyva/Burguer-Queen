@@ -1,6 +1,5 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
-import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import Breakfast from './Breakfast/Breakfast';
 import Dinner from './Dinner/Dinner';
@@ -17,7 +16,7 @@ import {
 } from '../../Lib/orderComands';
 // import UseOrders from '../../Lib/UseOrders';
 
-function TakeOrders({ user }) {
+function TakeOrders() {
   const [dinnerMenu, setDinnerMenu] = useState();
   const [breakfastMenu, setBreakfastMenu] = useState();
   const [orders, setOrders] = useState([]);
@@ -79,7 +78,7 @@ function TakeOrders({ user }) {
 
   return (
     <>
-      <TakeOrderHeader user={user} setMenu={setMenu} menu={menu} />
+      <TakeOrderHeader setMenu={setMenu} menu={menu} />
       <div className="take-order">
         <>
           {menu === 'breakfast' ? (
@@ -117,10 +116,6 @@ function TakeOrders({ user }) {
     </>
   );
 }
-
-TakeOrders.propTypes = {
-  user: PropTypes.string.isRequired
-};
 
 export default TakeOrders;
 

@@ -1,4 +1,34 @@
 {
+  "empleados": [
+    {
+      "id": 1,
+      "name": {
+        "firstName": "Melissa",
+        "lastName": "Leyva"
+      },
+      "role": {
+        "kitchen": true,
+        "admin": false,
+        "waiter": false
+      },
+      "email": "cocina@bq.com",
+      "password": "cocina123"
+    },
+    {
+      "id": 2,
+      "name": {
+        "firstName": "Alejandra",
+        "lastName": "Estrella"
+      },
+      "role": {
+        "kitchen": false,
+        "admin": false,
+        "waiter": true
+      },
+      "email": "mesero@bq.com",
+      "password": "mesero123"
+    }
+  ],
   "desayunos": [
     {
       "id": "001",
@@ -165,6 +195,31 @@
       ],
       "date": "9/12/2021",
       "timeIn": "12:34:46",
+      "status": "pending"
+    },
+    {
+      "id": 1639550522877,
+      "client": "melissa leyva",
+      "resume": [
+        {
+          "id": "001",
+          "name": "Café americano",
+          "price": 5,
+          "image": "https://i.ibb.co/j55gKKF/black-coffe.png",
+          "type": "Desayuno",
+          "qty": 1
+        },
+        {
+          "id": "002",
+          "name": "Café con leche",
+          "price": 7,
+          "image": "https://i.ibb.co/y6J5nCW/milk-coffe.png",
+          "type": "Desayuno",
+          "qty": 1
+        }
+      ],
+      "date": "15/12/2021",
+      "timeIn": "0:42:02",
       "status": "pending"
     }
   ]

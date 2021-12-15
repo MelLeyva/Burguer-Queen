@@ -1,31 +1,24 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import LogInJSON from '../../Lib/LogInJSON';
 // import { errorMessage } from '../../Lib/firebase';
 
-const LogInForm = ({ logInAuth /* , errorMessage */ }) => {
+const LogInForm = () => {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
-  const [error, setError] = useState('');
+  const { getUser } = LogInJSON();
 
-  const handleSubmit = (email, pass) => {
-    logInAuth(email, pass)
-      .then((userCredential) => {
-        const { user } = userCredential;
-        console.log(user);
-      })
-      .catch((errorF) => {
-        setError('Validar Credenciales', errorF);
-      });
+  const handleSubmit = (e, email, pass) => {
+    e.preventDefault();
+    getUser(email, pass);
   };
 
   return (
     <form
       className="inputs"
       onSubmit={(e) => {
-        e.preventDefault();
-        handleSubmit(loginEmail, loginPassword);
+        handleSubmit(e, loginEmail, loginPassword);
       }}
     >
       <input
@@ -45,14 +38,9 @@ const LogInForm = ({ logInAuth /* , errorMessage */ }) => {
           setLoginPassword(event.target.value);
         }}
       />
-      {error && error === '' ? <p /> : <p>{error}</p>}
       <button type="submit">Ingresar</button>
     </form>
   );
-};
-
-LogInForm.propTypes = {
-  logInAuth: PropTypes.func.isRequired
 };
 
 export default LogInForm;

@@ -1,7 +1,7 @@
-import React from 'react';
+/* import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { logInAuth /* , logOut  , errorMessage */ } from '../Lib/firebase';
+import { logInAuth /* , logOut  , errorMessage } from '../Lib/firebase';
 import LogInPage from './Log-In/LogIn';
 import TakeOrders from './Menu/TakeOrders';
 // import Kitchen from './Kitchen/Kitchen';
@@ -24,4 +24,4 @@ Views.propTypes = {
   user: PropTypes.string.isRequired
 };
 
-export default Views;
+export default Views; */

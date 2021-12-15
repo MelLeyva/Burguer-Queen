@@ -1,26 +1,21 @@
 /* eslint-disable no-console */
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './firebase-config';
-import Views from './Components/Views';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './Styles-scss/App.scss';
 import './Styles-scss/LogIn.scss';
 import './Styles-scss/Order-style/Order.scss';
+import TakeOrders from './Components/Menu/TakeOrders';
+import LogInPage from './Components/Log-In/LogIn';
+import Kitchen from './Components/Kitchen/Kitchen';
 
 function App() {
-  const [user, setUser] = useState(null);
-  const authState = onAuthStateChanged(auth, (currentUser) => {
-    // eslint-disable-next-line no-unused-expressions
-    currentUser ? setUser(currentUser.email) : setUser(false);
-  });
-  useEffect(() => {
-    authState();
-  }, [authState]);
-
   return (
     <Router>
-      <Views user={user} />
+      <Routes>
+        <Route exact path="/" element={<LogInPage />} />
+        <Route exact path="/orders" element={<TakeOrders />} />
+        <Route exact path="/kitchen" element={<Kitchen />} />
+      </Routes>
     </Router>
   );
 }
