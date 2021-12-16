@@ -1,32 +1,34 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
+import Cookies from 'universal-cookie';
 import Breakfast from './Breakfast/Breakfast';
 import Dinner from './Dinner/Dinner';
 import TakeOrderHeader from './Header/TakeOrderHeader';
 import Check from './Check/Check';
 import UseHeader from '../../Hooks/UseHeader';
 import UseComanda from '../../Hooks/UseComanda';
-import helpHttp from '../../helpers/helpHttp';
+// import helpHttp from '../../helpers/helpHttp';
 import {
   addProduct,
   restProduct,
   deleteProduct,
   cancel
 } from '../../Lib/orderComands';
+import { newData } from '../../Lib/crud';
 // import UseOrders from '../../Lib/UseOrders';
-
+const cookies = new Cookies();
 function TakeOrders() {
   const [dinnerMenu, setDinnerMenu] = useState();
   const [breakfastMenu, setBreakfastMenu] = useState();
-  const [orders, setOrders] = useState([]);
+  // const [orders, setOrders] = useState([]);
+  const userId = cookies.get('name').firstName;
 
   const { setMenu, menu } = UseHeader();
   const { resume, setResume, client, setClient } = UseComanda();
-  // const { addProduct, restProduct, deleteProduct, cancel } = UseOrders();
 
-  const api = helpHttp();
-  const urlKitchen = 'http://localhost:5000/orders';
+  // const api = helpHttp();
+  // const urlKitchen = 'http://localhost:5000/orders';
 
   const getDataDinner = async () => {
     const url = `http://localhost:5000/comidas`;
@@ -48,32 +50,18 @@ function TakeOrders() {
     getDataBreakfast();
   }, []);
 
-  const newOrder = () => {
-    console.log({ resume });
-    const body = {
-      id: Date.now(),
-      client,
-      resume,
-      date: new Date().toLocaleDateString(),
-      timeIn: new Date().toLocaleTimeString(),
-      status: 'pending'
-    };
-    // console.log(newResume);
-    // eslint-disable-next-line prefer-const
-    let options = {
-      body,
-      headers: { 'Content-Type': 'application/json' }
-    };
-    api.post(urlKitchen, options).then((res) => {
-      // console.log(newResume);
-      console.log(res);
-      if (!res.err) {
-        setOrders([...orders, res]);
-      } else {
-        console.log('esto fallo');
-      }
-      console.log(orders);
-    });
+  const body = {
+    id: Date.now(),
+    userId,
+    client,
+    resume,
+    date: new Date().toLocaleDateString(),
+    timeIn: new Date().toLocaleTimeString(),
+    status: 'pending'
+  };
+
+  const sendOrder = async () => {
+    await newData('orders', body);
   };
 
   return (
@@ -109,8 +97,7 @@ function TakeOrders() {
           setClient={setClient}
           deleteProduct={deleteProduct}
           cancel={cancel}
-          // newResume={newResume}
-          newOrder={newOrder}
+          sendOrder={sendOrder}
         />
       </div>
     </>
@@ -118,61 +105,3 @@ function TakeOrders() {
 }
 
 export default TakeOrders;
-
-// console.log(newResume);
-
-/*   useEffect(() => {
-    api.get(urlKitchen).then((res) => {
-      // console.log(res);
-      if (!res.err) {
-        setOrders(res);
-        // setError(null);
-      } else {
-        setOrders(null);
-        // setError(res);
-      }
-    });
-    // console.log(orders);
-  }, []); */
-/*   const addProduct = (item) => {
-    const exist = resume.find((x) => x.id === item.id);
-    if (exist) {
-      setResume(
-        resume.map((x) =>
-          x.id === item.id ? { ...exist, qty: exist.qty + 1 } : x
-        )
-      );
-    } else {
-      setResume([...resume, { ...item, qty: 1 }]);
-    }
-  }; 
-
-  const restProduct = (item) => {
-    const exist = resume.find((x) => x.id === item.id);
-    if (exist === undefined) {
-      return '';
-    }
-    if (exist.qty === 1) {
-      return setResume(resume.filter((x) => x.id !== item.id));
-    }
-    return setResume(
-      resume.map((x) =>
-        x.id === item.id ? { ...exist, qty: exist.qty - 1 } : x
-      )
-    );
-  };
-
-  const deleteProduct = (item) => {
-    const exist = resume.find((x) => x.id === item.id);
-    if (exist) {
-      setResume(resume.filter((x) => x.id !== item.id));
-    }
-  };
-
-  const cancel = () => {
-    const confirmBox = window.confirm('¿Desea cancelar la orden?');
-    if (confirmBox === true) {
-      setClient('');
-      setResume([]);
-    }
-  }; */

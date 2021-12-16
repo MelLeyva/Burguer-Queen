@@ -1,37 +1,39 @@
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 import Cookies from 'universal-cookie';
-import Axios from 'axios';
+import { getData } from './crud';
+// import Axios from 'axios';
 
 const cookies = new Cookies();
 const LogInJSON = () => {
   const getUser = async (email, password) => {
-    await Axios.get(`http://localhost:5000/empleados`, {
-      // eslint-disable-next-line prettier/prettier
-      params: { 'email': email, 'password': password }
-    })
-      .then((response) => response.data)
-      .then((resul) => {
-        if (resul.length > 0) {
-          const res = resul[0];
-          cookies.set('id', res.id, { path: '/' });
-          cookies.set('name', res.name, { path: '/' });
-          cookies.set('admin', res.role.admin, { path: '/' });
-          cookies.set('kitchen', res.role.kitchen, { path: '/' });
-          cookies.set('waiter', res.role.waiter, { path: '/' });
-          cookies.set('email', res.email, { path: '/' });
-          console.log(resul);
-          // alert('usuario ingresado');
-          // cookies.set('password', res.password, { path: '/' });
-          if (cookies.get('kitchen') === 'true') {
-            window.location.href = '/kitchen';
-          } else if (cookies.get('waiter') === 'true') {
-            window.location.href = '/orders';
-          } /* else if (res.role.admin) {
-            window.location.href = '/admin';
-          } */
-        } else {
-          alert('Verificar credenciales');
+    await getData('empleados')
+      .then((res) => {
+        const userEmail = res.filter((elem) => elem.email === email);
+        const userPassword = userEmail.filter(
+          (elem) => elem.password === password
+        );
+        console.log(res);
+        if (userEmail.length <= 0) {
+          alert('email incorrecto');
+        } else if (userPassword <= 0) {
+          alert('Contrasenña incorrecta');
+        }
+        const userLogIn = userPassword[0];
+        cookies.set('id', userLogIn.id, { path: '/' });
+        cookies.set('name', userLogIn.name, { path: '/' });
+        cookies.set('admin', userLogIn.role.admin, { path: '/' });
+        cookies.set('kitchen', userLogIn.role.kitchen, { path: '/' });
+        cookies.set('waiter', userLogIn.role.waiter, { path: '/' });
+        cookies.set('email', userLogIn.email, { path: '/' });
+        // console.log(userPassword);
+
+        if (cookies.get('kitchen') === 'true') {
+          window.location.href = '/kitchen';
+        } else if (cookies.get('waiter') === 'true') {
+          window.location.href = '/orders';
+        } else if (res.role.admin) {
+          window.location.href = '/admin';
         }
       })
       .catch((error) => {

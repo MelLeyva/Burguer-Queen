@@ -14,19 +14,23 @@ function Check({
   setClient,
   cancel,
   deleteProduct,
-  newOrder
+  sendOrder
+  // newOrder
 }) {
   const total = resume.reduce((a, c) => a + c.price * c.qty, 0);
   const iva = total * 0.16;
   const totalCheck = total + iva;
-  // console.log(newResume);
-  /*   const handleSubmit = () => {
-    if (!client) {
-      alert('falta nombre de cliente');
-    } else {
-      newOrder(newResume);
+
+  const handleSendOrder = () => {
+    const confirm = window.confirm('Confirmar orden');
+    if (confirm === true) {
+      sendOrder();
+      alert('orden enviada');
+      setResume([]);
+      setClient('');
     }
-  }; */
+  };
+
   return (
     <div className="check">
       <form className="order-info">
@@ -85,7 +89,11 @@ function Check({
           >
             Cancelar
           </button>
-          <button className="send" type="button" onClick={() => newOrder()}>
+          <button
+            className="send"
+            type="button"
+            onClick={() => handleSendOrder()}
+          >
             Enviar
           </button>
         </div>
