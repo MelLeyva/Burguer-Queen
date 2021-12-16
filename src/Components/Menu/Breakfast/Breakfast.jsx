@@ -3,9 +3,13 @@
 import React from 'react';
 import ItemBreakfast from './ItemBreakfast';
 
-// import Cart from '../../../Hooks/Cart';
-
-function Breakfast({ breakfastMenu, addProduct, restProduct, resume }) {
+function Breakfast({
+  breakfastMenu,
+  addProduct,
+  restProduct,
+  resume,
+  setResume
+}) {
   return (
     <>
       <section className="breakfast-menu">
@@ -17,6 +21,7 @@ function Breakfast({ breakfastMenu, addProduct, restProduct, resume }) {
               addProduct={addProduct}
               restProduct={restProduct}
               resume={resume}
+              setResume={setResume}
             />
           ))}
       </section>

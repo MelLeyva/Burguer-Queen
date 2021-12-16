@@ -1,14 +1,36 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-alert */
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import Food from './Food';
+// import helpHttp from '../../../helpers/helpHttp';
 
-function Check({ resume, client, setClient, cancel, deleteProduct }) {
+function Check({
+  resume,
+  setResume,
+  client,
+  setClient,
+  cancel,
+  deleteProduct,
+  sendOrder
+  // newOrder
+}) {
   const total = resume.reduce((a, c) => a + c.price * c.qty, 0);
   const iva = total * 0.16;
   const totalCheck = total + iva;
-  // console.log(iva);
+
+  const handleSendOrder = () => {
+    const confirm = window.confirm('Confirmar orden');
+    if (confirm === true) {
+      sendOrder();
+      alert('orden enviada');
+      setResume([]);
+      setClient('');
+    }
+  };
+
   return (
     <div className="check">
       <form className="order-info">
@@ -34,7 +56,13 @@ function Check({ resume, client, setClient, cancel, deleteProduct }) {
             </span>
             <div className="div-food">
               {resume.map((food) => (
-                <Food key={food.id} food={food} deleteProduct={deleteProduct} />
+                <Food
+                  key={food.id}
+                  food={food}
+                  deleteProduct={deleteProduct}
+                  setResume={setResume}
+                  resume={resume}
+                />
               ))}
             </div>
             <div className="total">
@@ -54,10 +82,18 @@ function Check({ resume, client, setClient, cancel, deleteProduct }) {
           </div>
         )}
         <div>
-          <button className="cancel" type="button" onClick={cancel}>
+          <button
+            className="cancel"
+            type="button"
+            onClick={() => cancel(setClient, setResume)}
+          >
             Cancelar
           </button>
-          <button className="send" type="button">
+          <button
+            className="send"
+            type="button"
+            onClick={() => handleSendOrder()}
+          >
             Enviar
           </button>
         </div>

@@ -1,18 +1,34 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-console */
-import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
+import Cookies from 'universal-cookie';
 import Breakfast from './Breakfast/Breakfast';
 import Dinner from './Dinner/Dinner';
 import TakeOrderHeader from './Header/TakeOrderHeader';
 import Check from './Check/Check';
 import UseHeader from '../../Hooks/UseHeader';
 import UseComanda from '../../Hooks/UseComanda';
-
-function TakeOrders({ user }) {
+// import helpHttp from '../../helpers/helpHttp';
+import {
+  addProduct,
+  restProduct,
+  deleteProduct,
+  cancel
+} from '../../Lib/orderComands';
+import { newData } from '../../Lib/crud';
+// import UseOrders from '../../Lib/UseOrders';
+const cookies = new Cookies();
+function TakeOrders() {
   const [dinnerMenu, setDinnerMenu] = useState();
   const [breakfastMenu, setBreakfastMenu] = useState();
+  // const [orders, setOrders] = useState([]);
+  const userId = cookies.get('name').firstName;
+
   const { setMenu, menu } = UseHeader();
   const { resume, setResume, client, setClient } = UseComanda();
+
+  // const api = helpHttp();
+  // const urlKitchen = 'http://localhost:5000/orders';
 
   const getDataDinner = async () => {
     const url = `http://localhost:5000/comidas`;
@@ -34,49 +50,23 @@ function TakeOrders({ user }) {
     getDataBreakfast();
   }, []);
 
-  const addProduct = (item) => {
-    const exist = resume.find((x) => x.id === item.id);
-    if (exist) {
-      setResume(
-        resume.map((x) =>
-          x.id === item.id ? { ...exist, qty: exist.qty + 1 } : x
-        )
-      );
-    } else {
-      setResume([...resume, { ...item, qty: 1 }]);
-    }
+  const body = {
+    id: Date.now(),
+    userId,
+    client,
+    resume,
+    date: new Date().toLocaleDateString(),
+    timeIn: new Date().toLocaleTimeString(),
+    status: 'pending'
   };
 
-  const restProduct = (item) => {
-    const exist = resume.find((x) => x.id === item.id);
-    if (exist === undefined) {
-      return '';
-    }
-    if (exist.qty === 1) {
-      return setResume(resume.filter((x) => x.id !== item.id));
-    }
-    return setResume(
-      resume.map((x) =>
-        x.id === item.id ? { ...exist, qty: exist.qty - 1 } : x
-      )
-    );
-  };
-
-  const deleteProduct = (item) => {
-    const exist = resume.find((x) => x.id === item.id);
-    if (exist) {
-      setResume(resume.filter((x) => x.id !== item.id));
-    }
-  };
-
-  const cancel = () => {
-    setResume([]);
-    setClient('');
+  const sendOrder = async () => {
+    await newData('orders', body);
   };
 
   return (
     <>
-      <TakeOrderHeader user={user} setMenu={setMenu} menu={menu} />
+      <TakeOrderHeader setMenu={setMenu} menu={menu} />
       <div className="take-order">
         <>
           {menu === 'breakfast' ? (
@@ -85,6 +75,7 @@ function TakeOrders({ user }) {
               addProduct={addProduct}
               restProduct={restProduct}
               resume={resume}
+              setResume={setResume}
             />
           ) : null}
         </>
@@ -95,23 +86,22 @@ function TakeOrders({ user }) {
               addProduct={addProduct}
               restProduct={restProduct}
               resume={resume}
+              setResume={setResume}
             />
           ) : null}
         </>
         <Check
           resume={resume}
+          setResume={setResume}
           client={client}
           setClient={setClient}
           deleteProduct={deleteProduct}
           cancel={cancel}
+          sendOrder={sendOrder}
         />
       </div>
     </>
   );
 }
-
-TakeOrders.propTypes = {
-  user: PropTypes.string.isRequired
-};
 
 export default TakeOrders;

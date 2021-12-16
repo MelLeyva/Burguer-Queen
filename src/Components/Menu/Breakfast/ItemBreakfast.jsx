@@ -4,7 +4,13 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-function ItemBreakfast({ product, addProduct, restProduct, resume }) {
+function ItemBreakfast({
+  product,
+  addProduct,
+  restProduct,
+  resume,
+  setResume
+}) {
   const { name, image, price } = product;
 
   return (
@@ -21,7 +27,7 @@ function ItemBreakfast({ product, addProduct, restProduct, resume }) {
               <button
                 type="button"
                 className="btn-rest"
-                onClick={() => restProduct(product)}
+                onClick={() => restProduct(product, setResume, resume)}
               >
                 -
               </button>
@@ -35,7 +41,7 @@ function ItemBreakfast({ product, addProduct, restProduct, resume }) {
               <button
                 type="button"
                 className="btn-add"
-                onClick={() => addProduct(product)}
+                onClick={() => addProduct(product, setResume, resume)}
               >
                 +
               </button>
