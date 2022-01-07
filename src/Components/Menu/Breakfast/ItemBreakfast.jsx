@@ -9,7 +9,7 @@ function ItemBreakfast({
   addProduct,
   restProduct,
   resume,
-  setResume
+  newResume
 }) {
   const { name, image, price } = product;
 
@@ -27,7 +27,7 @@ function ItemBreakfast({
               <button
                 type="button"
                 className="btn-rest"
-                onClick={() => restProduct(product, setResume, resume)}
+                onClick={() => restProduct(product, newResume, resume)}
               >
                 -
               </button>
@@ -41,7 +41,7 @@ function ItemBreakfast({
               <button
                 type="button"
                 className="btn-add"
-                onClick={() => addProduct(product, setResume, resume)}
+                onClick={() => addProduct(product, newResume, resume)}
               >
                 +
               </button>

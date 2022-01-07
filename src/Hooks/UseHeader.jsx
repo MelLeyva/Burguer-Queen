@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 function UseHeader() {
   const [menu, setMenu] = useState('breakfast');
-  const [pedidos, setOrders] = useState(null);
+  const [orders, setOrders] = useState(null);
 
   const handleMenu = (typeMenu) => {
     setMenu(typeMenu);
@@ -15,7 +15,7 @@ function UseHeader() {
   return {
     menu,
     handleMenu,
-    pedidos,
+    orders,
     handleOrders
   };
 }

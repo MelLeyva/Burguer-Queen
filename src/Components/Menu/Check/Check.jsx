@@ -9,19 +9,19 @@ import Food from './Food';
 
 function Check({
   resume,
-  setResume,
   client,
-  setClient,
   cancel,
   deleteProduct,
-  sendOrder
+  handleSendOrder,
+  body,
+  newClient
   // newOrder
 }) {
   const total = resume.reduce((a, c) => a + c.price * c.qty, 0);
   const iva = total * 0.16;
   const totalCheck = total + iva;
 
-  const handleSendOrder = () => {
+  /*   const handleSendOrder = () => {
     if (client === '') {
       alert('Ingrese el nombre del cliente');
     } else {
@@ -33,7 +33,7 @@ function Check({
         setClient('');
       }
     }
-  };
+  }; */
 
   return (
     <div className="check">
@@ -45,7 +45,7 @@ function Check({
             type="text"
             value={client}
             onChange={(event) => {
-              setClient(event.target.value);
+              newClient(event.target.value);
             }}
           />
         </label>
@@ -64,7 +64,6 @@ function Check({
                   key={food.id}
                   food={food}
                   deleteProduct={deleteProduct}
-                  setResume={setResume}
                   resume={resume}
                 />
               ))}
@@ -86,17 +85,13 @@ function Check({
           </div>
         )}
         <div>
-          <button
-            className="cancel"
-            type="button"
-            onClick={() => cancel(setClient, setResume)}
-          >
+          <button className="cancel" type="button" onClick={() => cancel()}>
             Cancelar
           </button>
           <button
             className="send"
             type="button"
-            onClick={() => handleSendOrder()}
+            onClick={() => handleSendOrder(body)}
           >
             Enviar
           </button>

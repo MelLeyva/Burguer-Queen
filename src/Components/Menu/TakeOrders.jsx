@@ -8,13 +8,6 @@ import TakeOrderHeader from './Header/TakeOrderHeader';
 import Check from './Check/Check';
 import UseHeader from '../../Hooks/UseHeader';
 import UseComanda from '../../Hooks/UseComanda';
-import {
-  addProduct,
-  restProduct,
-  deleteProduct,
-  cancel
-} from '../../Lib/orderComands';
-import { newData } from '../../Lib/crud';
 import Orders from './Orders/Orders';
 
 const cookies = new Cookies();
@@ -24,7 +17,17 @@ function TakeOrders() {
   const userId = cookies.get('name').firstName;
 
   const { handleMenu, menu, orders, handleOrders } = UseHeader();
-  const { resume, setResume, client, setClient } = UseComanda();
+  const {
+    resume,
+    client,
+    newClient,
+    newResume,
+    addProduct,
+    restProduct,
+    deleteProduct,
+    cancel,
+    handleSendOrder
+  } = UseComanda();
 
   const getDataDinner = async () => {
     const url = `http://localhost:5000/comidas`;
@@ -55,17 +58,6 @@ function TakeOrders() {
     status: 'pending'
   };
 
-  const sendOrder = async () => {
-    await newData('orders', body);
-  };
-
-  /*   const handleMenu = (typeMenu) => {
-    setMenu(typeMenu);
-  };
-  const handleOrders = (ord) => {
-    setOrders(ord);
-  };
- */
   return (
     <>
       <TakeOrderHeader handleMenu={handleMenu} handleOrders={handleOrders} />
@@ -82,7 +74,7 @@ function TakeOrders() {
                     addProduct={addProduct}
                     restProduct={restProduct}
                     resume={resume}
-                    setResume={setResume}
+                    newResume={newResume}
                   />
                 ) : null}
               </>
@@ -93,18 +85,18 @@ function TakeOrders() {
                     addProduct={addProduct}
                     restProduct={restProduct}
                     resume={resume}
-                    setResume={setResume}
+                    newResume={newResume}
                   />
                 ) : null}
               </>
               <Check
                 resume={resume}
-                setResume={setResume}
                 client={client}
-                setClient={setClient}
                 deleteProduct={deleteProduct}
                 cancel={cancel}
-                sendOrder={sendOrder}
+                handleSendOrder={handleSendOrder}
+                body={body}
+                newClient={newClient}
               />
             </>
           )}

@@ -8,7 +8,7 @@ function Breakfast({
   addProduct,
   restProduct,
   resume,
-  setResume
+  newResume
 }) {
   return (
     <>
@@ -21,7 +21,7 @@ function Breakfast({
               addProduct={addProduct}
               restProduct={restProduct}
               resume={resume}
-              setResume={setResume}
+              newResume={newResume}
             />
           ))}
       </section>

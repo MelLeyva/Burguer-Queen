@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 import React from 'react';
 import Cookies from 'universal-cookie';
@@ -5,8 +6,8 @@ import icon from '../../../img/logOut.png';
 import LogInJSON from '../../../Lib/LogInJSON';
 
 const cookies = new Cookies();
-// eslint-disable-next-line react/prop-types
-function TakeOrderHeader({ handleMenu, handlePedidos }) {
+
+function TakeOrderHeader({ handleMenu, handleOrders }) {
   const { removeCookies } = LogInJSON();
   const userName = cookies.get('name').firstName;
 
@@ -19,7 +20,7 @@ function TakeOrderHeader({ handleMenu, handlePedidos }) {
             className="breakfast"
             onClick={() => {
               handleMenu('breakfast');
-              handlePedidos(null);
+              handleOrders(null);
             }}
           >
             Desayuno
@@ -29,7 +30,7 @@ function TakeOrderHeader({ handleMenu, handlePedidos }) {
             className="dinner"
             onClick={() => {
               handleMenu('dinner');
-              handlePedidos(null);
+              handleOrders(null);
             }}
           >
             Resto del día
@@ -40,7 +41,7 @@ function TakeOrderHeader({ handleMenu, handlePedidos }) {
             type="button"
             className="see-orders"
             onClick={() => {
-              handlePedidos('pedidos');
+              handleOrders('pedidos');
             }}
           >
             Pedidos
