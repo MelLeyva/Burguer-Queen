@@ -119,23 +119,14 @@
   ],
   "orders": [
     {
-      "id": 1639632603006,
-      "userName": "Alejandra",
-      "client": "Maria",
+      "userId": "Alejandra",
+      "client": "Alicia",
       "resume": [
         {
           "id": "001",
           "name": "Café americano",
           "price": 5,
           "image": "https://i.ibb.co/j55gKKF/black-coffe.png",
-          "type": "Desayuno",
-          "qty": 1
-        },
-        {
-          "id": "002",
-          "name": "Café con leche",
-          "price": 7,
-          "image": "https://i.ibb.co/y6J5nCW/milk-coffe.png",
           "type": "Desayuno",
           "qty": 1
         },
@@ -148,9 +139,11 @@
           "qty": 1
         }
       ],
-      "date": "15/12/2021",
-      "timeIn": "23:30:03",
-      "status": "pending"
+      "date": "4/1/2022",
+      "timeIn": "12:47:37",
+      "status": "delivering",
+      "id": 1,
+      "timeOut": "2022-01-06T06:04:17.037Z"
     }
   ]
 }

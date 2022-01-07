@@ -8,7 +8,6 @@ import TakeOrderHeader from './Header/TakeOrderHeader';
 import Check from './Check/Check';
 import UseHeader from '../../Hooks/UseHeader';
 import UseComanda from '../../Hooks/UseComanda';
-// import helpHttp from '../../helpers/helpHttp';
 import {
   addProduct,
   restProduct,
@@ -16,19 +15,16 @@ import {
   cancel
 } from '../../Lib/orderComands';
 import { newData } from '../../Lib/crud';
-// import UseOrders from '../../Lib/UseOrders';
+import Orders from './Orders/Orders';
+
 const cookies = new Cookies();
 function TakeOrders() {
   const [dinnerMenu, setDinnerMenu] = useState();
   const [breakfastMenu, setBreakfastMenu] = useState();
-  // const [orders, setOrders] = useState([]);
   const userId = cookies.get('name').firstName;
 
-  const { setMenu, menu } = UseHeader();
+  const { handleMenu, menu, orders, handleOrders } = UseHeader();
   const { resume, setResume, client, setClient } = UseComanda();
-
-  // const api = helpHttp();
-  // const urlKitchen = 'http://localhost:5000/orders';
 
   const getDataDinner = async () => {
     const url = `http://localhost:5000/comidas`;
@@ -51,7 +47,6 @@ function TakeOrders() {
   }, []);
 
   const body = {
-    id: Date.now(),
     userId,
     client,
     resume,
@@ -64,41 +59,57 @@ function TakeOrders() {
     await newData('orders', body);
   };
 
+  /*   const handleMenu = (typeMenu) => {
+    setMenu(typeMenu);
+  };
+  const handleOrders = (ord) => {
+    setOrders(ord);
+  };
+ */
   return (
     <>
-      <TakeOrderHeader setMenu={setMenu} menu={menu} />
+      <TakeOrderHeader handleMenu={handleMenu} handleOrders={handleOrders} />
       <div className="take-order">
         <>
-          {menu === 'breakfast' ? (
-            <Breakfast
-              breakfastMenu={breakfastMenu}
-              addProduct={addProduct}
-              restProduct={restProduct}
-              resume={resume}
-              setResume={setResume}
-            />
-          ) : null}
+          {orders === 'pedidos' ? (
+            <Orders />
+          ) : (
+            <>
+              <>
+                {menu === 'breakfast' ? (
+                  <Breakfast
+                    breakfastMenu={breakfastMenu}
+                    addProduct={addProduct}
+                    restProduct={restProduct}
+                    resume={resume}
+                    setResume={setResume}
+                  />
+                ) : null}
+              </>
+              <>
+                {menu === 'dinner' ? (
+                  <Dinner
+                    dinnerMenu={dinnerMenu}
+                    addProduct={addProduct}
+                    restProduct={restProduct}
+                    resume={resume}
+                    setResume={setResume}
+                  />
+                ) : null}
+              </>
+              <Check
+                resume={resume}
+                setResume={setResume}
+                client={client}
+                setClient={setClient}
+                deleteProduct={deleteProduct}
+                cancel={cancel}
+                sendOrder={sendOrder}
+              />
+            </>
+          )}
+          ;
         </>
-        <>
-          {menu === 'dinner' ? (
-            <Dinner
-              dinnerMenu={dinnerMenu}
-              addProduct={addProduct}
-              restProduct={restProduct}
-              resume={resume}
-              setResume={setResume}
-            />
-          ) : null}
-        </>
-        <Check
-          resume={resume}
-          setResume={setResume}
-          client={client}
-          setClient={setClient}
-          deleteProduct={deleteProduct}
-          cancel={cancel}
-          sendOrder={sendOrder}
-        />
       </div>
     </>
   );

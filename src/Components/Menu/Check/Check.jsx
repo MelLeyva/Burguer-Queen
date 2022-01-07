@@ -22,12 +22,16 @@ function Check({
   const totalCheck = total + iva;
 
   const handleSendOrder = () => {
-    const confirm = window.confirm('Confirmar orden');
-    if (confirm === true) {
-      sendOrder();
-      alert('orden enviada');
-      setResume([]);
-      setClient('');
+    if (client === '') {
+      alert('Ingrese el nombre del cliente');
+    } else {
+      const confirm = window.confirm('Confirmar orden');
+      if (confirm === true) {
+        sendOrder();
+        alert('orden enviada');
+        setResume([]);
+        setClient('');
+      }
     }
   };
 
