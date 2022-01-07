@@ -13,7 +13,7 @@ const LogInJSON = () => {
         const userPassword = userEmail.filter(
           (elem) => elem.password === password
         );
-        console.log(res);
+        // console.log(res);
         if (userEmail.length <= 0) {
           alert('email incorrecto');
         } else if (userPassword <= 0) {
